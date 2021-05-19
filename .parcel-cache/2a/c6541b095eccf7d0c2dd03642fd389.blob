@@ -1,0 +1,30 @@
+var _reactDom = require('react-dom');
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+var _reactDomDefault = _parcelHelpers.interopDefault(_reactDom);
+require('./index.scss');
+var _jsxFileName = "/Users/edisonmasis/CareerFoundryTasks/Achievement_4/movie_client/src/index.jsx";
+imr;
+class MooBee extends React.Component {
+  render() {
+    return (
+      /*#__PURE__*/React.createElement("div", {
+        className: "my-flix",
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 9,
+          columnNumber: 9
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        __self: this,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 10,
+          columnNumber: 11
+        }
+      }, "Good morning"))
+    );
+  }
+}
+const container = document.getElementsByClassName('app-container')[0];
+_reactDomDefault.default.render(React.createElement(MooBee), container);
