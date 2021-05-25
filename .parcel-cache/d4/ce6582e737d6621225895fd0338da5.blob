@@ -26709,7 +26709,6 @@ try {
         }, movie.Description)), /*#__PURE__*/_reactDefault.default.createElement("button", {
           onClick: () => {
             onBackClick(null);
-            console.log("it works");
           },
           __self: this,
           __source: {
@@ -26729,4 +26728,4 @@ try {
 
 },{"react":"3b2NM","@parcel/transformer-js/lib/esmodule-helpers.js":"3tkE2","../../../../../../../../usr/local/lib/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"2ZdUV"}]},["1j6wU","68WUB","1DVjT"], "1DVjT", "parcelRequire7066")
 
-//# sourceMappingURL=index.02675e63.js.map
+//# sourceMappingURL=index.HASH_REF_f9eab60bc3a7a7c3f683683702675e63.js.map
