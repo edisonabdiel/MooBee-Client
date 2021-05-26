@@ -26336,7 +26336,7 @@ try {
             columnNumber: 13
           }
         }, selectedMovie ? /*#__PURE__*/_reactDefault.default.createElement(_movieViewMovieView.MovieView, {
-          movieData: selectedMovie,
+          movie: selectedMovie,
           onBackClick: newSelectedMovie => {
             this.setSelectedMovie(newSelectedMovie);
           },

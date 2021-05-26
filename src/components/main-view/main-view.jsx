@@ -31,7 +31,7 @@ class MainView extends React.Component {
             <div className="main-view">
                 {selectedMovie
                     ? <MovieView
-                        movieData={selectedMovie}
+                        movie={selectedMovie}
                         onBackClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }} />
                     : movies.map(movie => (
                         <MovieCard
