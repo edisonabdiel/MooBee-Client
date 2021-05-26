@@ -1,0 +1,74 @@
+var helpers = require("../../../../../../../../usr/local/lib/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+try {
+  var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+  _parcelHelpers.defineInteropFlag(exports);
+  var _react = require('react');
+  var _reactDefault = _parcelHelpers.interopDefault(_react);
+  var _movieCardMovieCard = require('../movie-card/movie-card');
+  var _movieCardMovieCardDefault = _parcelHelpers.interopDefault(_movieCardMovieCard);
+  var _jsxFileName = "/Users/edisonmasis/CareerFoundryTasks/Achievement_4/movie_client/src/components/main-view/main-view.jsx";
+  class MainView extends _reactDefault.default.Component {
+    constructor() {
+      super();
+      this.state = {
+        movies: [{
+          _id: 1,
+          Title: 'Inception',
+          Description: 'desc1...',
+          ImagePath: '...'
+        }, {
+          _id: 2,
+          Title: 'The Shawshank Redemption',
+          Description: 'desc2...',
+          ImagePath: '...'
+        }, {
+          _id: 3,
+          Title: 'Gladiator',
+          Description: 'desc3...',
+          ImagePath: '...'
+        }]
+      };
+    }
+    render() {
+      const {movies} = this.state;
+      if (movies.length === 0) return (
+        /*#__PURE__*/_reactDefault.default.createElement("div", {
+          className: "main-view",
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 20,
+            columnNumber: 41
+          }
+        }, "The list is empty!")
+      );
+      return (
+        /*#__PURE__*/_reactDefault.default.createElement("div", {
+          className: "main-view",
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 23,
+            columnNumber: 11
+          }
+        }, movies.map(movie => /*#__PURE__*/_reactDefault.default.createElement(_movieCardMovieCardDefault.default, {
+          key: movie._id,
+          __self: this,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 24,
+            columnNumber: 34
+          }
+        })))
+      );
+    }
+  }
+  exports.default = MainView;
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
