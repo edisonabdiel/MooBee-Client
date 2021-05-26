@@ -26492,46 +26492,36 @@ try {
           _id: 1,
           Title: 'Inception',
           Description: 'desc1...',
-          ImagePath: '...'
+          ImagePath: 'https://image.tmdb.org/t/p/original/9gk7adHYeDvHkCSEqAvQNLV5Uge.jpg'
         }, {
           _id: 2,
           Title: 'The Shawshank Redemption',
           Description: 'desc2...',
-          ImagePath: '...'
+          ImagePath: 'https://fanart.tv/fanart/movies/278/movieposter/the-shawshank-redemption-5223c8231b88e.jpg'
         }, {
           _id: 3,
           Title: 'Gladiator',
           Description: 'desc3...',
-          ImagePath: '...'
+          ImagePath: 'https://image.tmdb.org/t/p/original/r1CesMGmV4EKauh5c7PtXBjWBZj.jpg'
         }],
         selectedMovie: null
       };
     }
     setSelectedMovie(newSelectedMovie) {
+      console.log(this.state);
       this.setState({
         selectedMovie: newSelectedMovie
       });
     }
     render() {
       const {movies, selectedMovie} = this.state;
-      if (selectedMovie) return (
-        /*#__PURE__*/_reactDefault.default.createElement(_movieViewMovieView.MovieView, {
-          movie: selectedMovie,
-          __self: this,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 28,
-            columnNumber: 35
-          }
-        })
-      );
       if (movies.length === 0) return (
         /*#__PURE__*/_reactDefault.default.createElement("div", {
           className: "main-view",
           __self: this,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 30,
+            lineNumber: 29,
             columnNumber: 41
           }
         }, "The list is empty!")
@@ -26542,18 +26532,18 @@ try {
           __self: this,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 33,
+            lineNumber: 32,
             columnNumber: 13
           }
         }, selectedMovie ? /*#__PURE__*/_reactDefault.default.createElement(_movieViewMovieView.MovieView, {
-          movieData: selectedMovie,
+          movie: selectedMovie,
           onBackClick: newSelectedMovie => {
             this.setSelectedMovie(newSelectedMovie);
           },
           __self: this,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 35,
+            lineNumber: 34,
             columnNumber: 23
           }
         }) : movies.map(movie => /*#__PURE__*/_reactDefault.default.createElement(_movieCardMovieCardDefault.default, {
@@ -26565,7 +26555,7 @@ try {
           __self: this,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 39,
+            lineNumber: 38,
             columnNumber: 25
           }
         })))
@@ -26651,6 +26641,7 @@ try {
             columnNumber: 17
           }
         }, /*#__PURE__*/_reactDefault.default.createElement("img", {
+          className: "movie-banner",
           src: movie.ImagePath,
           __self: this,
           __source: {
