@@ -28344,7 +28344,7 @@ try {
     }
   }
   MovieCard.propTypes = {
-    movie: _propTypesDefault.default.shape({
+    movieData: _propTypesDefault.default.shape({
       title: _propTypesDefault.default.string
     }).isRequired,
     onMovieClick: _propTypesDefault.default.func.isRequired
