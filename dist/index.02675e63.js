@@ -29306,7 +29306,6 @@ try {
     const [password, setPassword] = _react.useState('');
     const handleSubmit = e => {
       e.preventDefault();
-      console.log(username, password);
       props.onLoggedIn(username);
     };
     return (
@@ -29314,14 +29313,14 @@ try {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 16,
+          lineNumber: 15,
           columnNumber: 9
         }
       }, /*#__PURE__*/_reactDefault.default.createElement("label", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 17,
+          lineNumber: 16,
           columnNumber: 13
         }
       }, "Username:", /*#__PURE__*/_reactDefault.default.createElement("input", {
@@ -29331,14 +29330,14 @@ try {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 17,
+          lineNumber: 16,
           columnNumber: 29
         }
       })), /*#__PURE__*/_reactDefault.default.createElement("label", {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 18,
+          lineNumber: 17,
           columnNumber: 13
         }
       }, "Password:", /*#__PURE__*/_reactDefault.default.createElement("input", {
@@ -29348,7 +29347,7 @@ try {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 18,
+          lineNumber: 17,
           columnNumber: 29
         }
       })), /*#__PURE__*/_reactDefault.default.createElement("button", {
@@ -29357,7 +29356,7 @@ try {
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 19,
+          lineNumber: 18,
           columnNumber: 13
         }
       }, "Submit"))
