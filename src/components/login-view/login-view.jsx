@@ -17,11 +17,11 @@ const LoginView = (props) => {
     return (
         <Form>
             <Form.Group controlId="userName" >
-                <Form.Label>Username:<input type="text" value={username} onChange={e => setUsername(e.target.value)} /></Form.Label>
+                <Form.Label>Username:</Form.Label>
                 <Form.Control type="text" />
             </Form.Group>
             <Form.Group>
-                <Form.Label>Password:<input type="password" value={password} onChange={e => setPassword(e.target.value)} /></Form.Label>
+                <Form.Label>Password:</Form.Label>
             </Form.Group>
             <Button type="submit" variant="info" onClick={handleSubmit}>Login</Button>
         </Form>

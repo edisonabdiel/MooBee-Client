@@ -30078,17 +30078,7 @@ try {
           lineNumber: 20,
           columnNumber: 17
         }
-      }, "Username:", /*#__PURE__*/_reactDefault.default.createElement("input", {
-        type: "text",
-        value: username,
-        onChange: e => setUsername(e.target.value),
-        __self: undefined,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 20,
-          columnNumber: 38
-        }
-      })), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Control, {
+      }, "Username:"), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapFormDefault.default.Control, {
         type: "text",
         __self: undefined,
         __source: {
@@ -30110,17 +30100,7 @@ try {
           lineNumber: 24,
           columnNumber: 17
         }
-      }, "Password:", /*#__PURE__*/_reactDefault.default.createElement("input", {
-        type: "password",
-        value: password,
-        onChange: e => setPassword(e.target.value),
-        __self: undefined,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 24,
-          columnNumber: 38
-        }
-      }))), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapButtonDefault.default, {
+      }, "Password:")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapButtonDefault.default, {
         type: "submit",
         variant: "info",
         onClick: handleSubmit,
