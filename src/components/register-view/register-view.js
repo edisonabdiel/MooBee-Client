@@ -1,4 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+
+
 
 const RegisterView = () => {
 
@@ -6,21 +11,40 @@ const RegisterView = () => {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-   
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
-    
+
     }
 
     return (
-        <form>
-            <label>Username:<input type="text" value={username} onChange={e => setUsername(e.target.value)} /></label>
-            <label>Email:<input type="text" value={email} onChange={e => setEmail(e.target.value)} /></label>
-            <label>Password:<input type="password" value={password} onChange={e => setPassword(e.target.value)} /></label>
-            <button type="submit" onClick={handleSubmit}>Submit</button>
-        </form>
+        <Row className="justify-content-md-center">
+            <h1>Register on MooBee</h1>
+            <Form>
+                <Form.Group controlId="userName">
+                    <Form.Label>Username:<input type="text" value={username} onChange={e => setUsername(e.target.value)} /></Form.Label>
+                    <Form.Control type="text" />
+                </Form.Group>
+
+                <Form.Group controlId="formBasicEmail">
+                    <Form.Label>Email:<input type="text" value={email} onChange={e => setEmail(e.target.value)} /></Form.Label>
+                    <Form.Control type="email" />
+                </Form.Group>
+
+                <Form.Group controlId="formPassword">
+                    <Form.Label>Password:<input type="password" value={password} onChange={e => setPassword(e.target.value)} /></Form.Label>
+                    <Form.Control type="password" />
+                </Form.Group>
+
+                <Button type="submit" onClick={handleSubmit}>Submit</Button>
+            </Form>
+        </Row>
     );
 }
+
+RegistrationView.propTypes = {
+    onRegister: PropTypes.func.isRequired
+};
 
 export default RegisterView;

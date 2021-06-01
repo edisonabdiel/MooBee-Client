@@ -1,9 +1,14 @@
 $color: steelblue;
 
+body {
+  background-color: black;
+}
+
 .my-flix {
   color: $color;
 }
 
 img {
-  width: 30%;
+  width: 100%;
 }
+

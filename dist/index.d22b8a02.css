@@ -1,8 +1,12 @@
+body {
+  background-color: black;
+}
+
 .my-flix {
   color: steelblue;
 }
 
 img {
-  width: 30%;
+  width: 100%;
 }
 /*# sourceMappingURL=index.d22b8a02.css.map */
