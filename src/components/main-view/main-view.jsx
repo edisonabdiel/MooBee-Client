@@ -12,6 +12,8 @@ import Nav from 'react-bootstrap/Nav';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
+import './main-view.scss';
+
 
 class MainView extends React.Component {
 
@@ -49,7 +51,7 @@ class MainView extends React.Component {
 
         return (
             <>
-                <Navbar collapseOnSelect expand="lg" sticky="top" className="nav-bar" bg="dark" variant="dark">
+                <Navbar collapseOnSelect expand="lg" fixed="top" className="nav-bar" bg="dark" variant="dark">
                     <Navbar.Brand href="#home">MooBee</Navbar.Brand>
                     <Nav className="mr-auto my-2 my-lg-0" style={{ maxHeight: '100px' }}>
                         <Nav.Link href="#features">Directors</Nav.Link>
@@ -70,7 +72,7 @@ class MainView extends React.Component {
                             </Col>
                         )
                         : (
-                            <Col md={6} >
+                            <Col xs={12} sm={6} md={4} lg={4} >
                                 {movies.map(movie => (
                                     <MovieCard
                                         movieData={movie}

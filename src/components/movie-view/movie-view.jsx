@@ -1,5 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Button from 'react-bootstrap/Button';
+
+import './movie-view.scss';
 
 export class MovieView extends React.Component {
 
@@ -13,13 +16,12 @@ export class MovieView extends React.Component {
                     <img src={movie.imgUrl} />
                 </div>
                 <div className="movie-title">
-                    <span className="value">{movie.title}</span>
+                    <h2 className="value">{movie.title}</h2>
                 </div>
-                <div className="movie-description">
+                <h5 className="movie-description">
                     <span className="value">{movie.description}</span>
-                </div>
-                <button onClick={() => { onBackClick(null); }}>Back</button>
-
+                </h5>
+                <Button variant="info" className="back-button" onClick={() => { onBackClick(null); }}>Back</Button>
             </div>
         );
     }
