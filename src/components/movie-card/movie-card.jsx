@@ -11,7 +11,7 @@ class MovieCard extends React.Component {
         
       return (
         <Card className="card">
-          <Card.Img variant="top" src={movieData.imgUrl} />
+          <Card.Img className="card-img" variant="top" src={movieData.imgUrl} />
           <Card.Body className="card-body">
             <Card.Title>{movieData.title}</Card.Title>
             <Card.Text>{movieData.description}</Card.Text>

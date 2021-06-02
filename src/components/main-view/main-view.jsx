@@ -71,16 +71,15 @@ class MainView extends React.Component {
                                     onBackClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }} />
                             </Col>
                         )
-                        : (
+                        :  movies.map(movie => (
                             <Col xs={12} sm={6} md={4} lg={4} >
-                                {movies.map(movie => (
                                     <MovieCard
                                         movieData={movie}
                                         key={movie._id}
                                         onMovieClick={(movie) => { this.setSelectedMovie(movie) }}
-                                    />))}
+                                    />)
                             </Col>
-                        )
+                        ))
                     }
                 </Row>
             </>
