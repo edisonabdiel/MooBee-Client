@@ -26451,7 +26451,7 @@ try {
             lineNumber: 69,
             columnNumber: 33
           }
-        })) : /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapColDefault.default, {
+        })) : movies.map(movie => /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapColDefault.default, {
           xs: 12,
           sm: 6,
           md: 4,
@@ -26462,7 +26462,7 @@ try {
             lineNumber: 75,
             columnNumber: 29
           }
-        }, movies.map(movie => /*#__PURE__*/_reactDefault.default.createElement(_movieCardMovieCardDefault.default, {
+        }, /*#__PURE__*/_reactDefault.default.createElement(_movieCardMovieCardDefault.default, {
           movieData: movie,
           key: movie._id,
           onMovieClick: movie => {
@@ -26471,10 +26471,10 @@ try {
           __self: this,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 77,
+            lineNumber: 76,
             columnNumber: 37
           }
-        })))))
+        }), ")"))))
       );
     }
   }
@@ -28460,6 +28460,7 @@ try {
             columnNumber: 9
           }
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardDefault.default.Img, {
+          className: "card-img",
           variant: "top",
           src: movieData.imgUrl,
           __self: this,
