@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
-
+import './register-view.scss';
 
 const RegisterView = () => {
 
@@ -23,17 +23,17 @@ const RegisterView = () => {
             <h1>Register on MooBee</h1>
             <Form>
                 <Form.Group controlId="userName">
-                    <Form.Label>Username:<input type="text" value={username} onChange={e => setUsername(e.target.value)} /></Form.Label>
+                    <Form.Label>Username:</Form.Label>
                     <Form.Control type="text" />
                 </Form.Group>
 
                 <Form.Group controlId="formBasicEmail">
-                    <Form.Label>Email:<input type="text" value={email} onChange={e => setEmail(e.target.value)} /></Form.Label>
+                    <Form.Label>Email:</Form.Label>
                     <Form.Control type="email" />
                 </Form.Group>
 
                 <Form.Group controlId="formPassword">
-                    <Form.Label>Password:<input type="password" value={password} onChange={e => setPassword(e.target.value)} /></Form.Label>
+                    <Form.Label>Password:</Form.Label>
                     <Form.Control type="password" />
                 </Form.Group>
 
