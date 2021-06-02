@@ -26363,6 +26363,7 @@ try {
             columnNumber: 17
           }
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapNavbarDefault.default.Brand, {
+          className: "logo",
           href: "#home",
           __self: this,
           __source: {
@@ -28468,6 +28469,7 @@ try {
             columnNumber: 11
           }
         }), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardDefault.default.Body, {
+          className: "card-body",
           __self: this,
           __source: {
             fileName: _jsxFileName,
@@ -28490,7 +28492,7 @@ try {
           }
         }, movieData.description), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapButtonDefault.default, {
           onClick: () => onMovieClick(movieData),
-          variant: "light",
+          variant: "info",
           __self: this,
           __source: {
             fileName: _jsxFileName,

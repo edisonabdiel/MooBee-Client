@@ -52,7 +52,7 @@ class MainView extends React.Component {
         return (
             <>
                 <Navbar collapseOnSelect expand="lg" fixed="top" className="nav-bar" bg="dark" variant="dark">
-                    <Navbar.Brand href="#home">MooBee</Navbar.Brand>
+                    <Navbar.Brand className="logo" href="#home">MooBee</Navbar.Brand>
                     <Nav className="mr-auto my-2 my-lg-0" style={{ maxHeight: '100px' }}>
                         <Nav.Link href="#features">Directors</Nav.Link>
                         <Nav.Link href="#pricing">Genres</Nav.Link>

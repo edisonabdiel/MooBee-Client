@@ -1,6 +1,10 @@
 .card {
   margin-top: 70px;
 }
+
+.card-body {
+  background-color: blanchedalmond;
+}
 .movie-view {
   margin-top: 100px;
 }
@@ -23,7 +27,10 @@
   margin-top: 20px;
 }
 
-
+.logo {
+  font-weight: 900;
+  color: blanchedalmond;
+}
 body {
   font-family: "Noto Serif JP", serif;
   background-color: black;

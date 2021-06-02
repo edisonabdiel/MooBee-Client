@@ -12,10 +12,10 @@ class MovieCard extends React.Component {
       return (
         <Card className="card">
           <Card.Img variant="top" src={movieData.imgUrl} />
-          <Card.Body>
+          <Card.Body className="card-body">
             <Card.Title>{movieData.title}</Card.Title>
             <Card.Text>{movieData.description}</Card.Text>
-            <Button onClick={() => onMovieClick(movieData)} variant="light" >View</Button>
+            <Button onClick={() => onMovieClick(movieData)} variant="info" >View</Button>
           </Card.Body>
           </Card>
         )
