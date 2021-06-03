@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Form from 'react-bootstrap/Form';
+import { Row } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button';
+import axios from 'axios';
 
 import './login-view.scss';
+
+import beeLogo from '../../assets/bee.png';
 
 const LoginView = (props) => {
 
@@ -13,20 +17,35 @@ const LoginView = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        props.onLoggedIn(username);
+        axios.post('https://moobei.herokuapp.com/login', {
+            username: username,
+            password: password
+        })
+            .then(res => {
+                const data = res.data;
+                props.onLoggedIn(data);
+                console.log(data)
+            })
+            .catch(e => {
+                console.log('no such user')
+            })
     }
 
     return (
-        <Form>
-            <Form.Group controlId="userName" >
-                <Form.Label>Username:</Form.Label>
-                <Form.Control type="text" />
-            </Form.Group>
-            <Form.Group>
-                <Form.Label>Password:</Form.Label>
-            </Form.Group>
-            <Button type="submit" variant="info" onClick={handleSubmit}>Login</Button>
-        </Form>
+        <Row className="justify-content-md-center">
+            <Form className="form">
+                <h1>Login to MooBee</h1>
+                <Form.Group controlId="username" >
+                    <Form.Label>Username:</Form.Label>
+                    <Form.Control type="text" placeholder="@username" />
+                </Form.Group>
+                <Form.Group controlId="password">
+                    <Form.Label>Password:</Form.Label>
+                    <Form.Control type="password" placeholder="password" />
+                </Form.Group>
+                <Button type="submit" variant="info" onClick={handleSubmit}>Login</Button>
+            </Form>
+        </Row>
     );
 }
 

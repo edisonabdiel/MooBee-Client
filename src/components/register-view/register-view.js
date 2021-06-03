@@ -37,7 +37,7 @@ const RegisterView = () => {
                     <Form.Control type="password" />
                 </Form.Group>
 
-                <Button type="submit" onClick={handleSubmit}>Submit</Button>
+                <Button type="submit"  variant="light" onClick={handleSubmit}>Submit</Button>
             </Form>
         </Row>
     );

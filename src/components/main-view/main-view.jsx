@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import MovieCard from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
-import { LoginView } from '../login-view/login-view';
+import  LoginView  from '../login-view/login-view';
 import { RegisterView } from '../login-view/login-view';
 
 import Row from 'react-bootstrap/Row';
@@ -21,20 +21,46 @@ class MainView extends React.Component {
         super();
         this.state = {
             movies: [],
-            selectedMovie: null
+            selectedMovie: null,
+            user: null
         };
     }
 
+    // Authenticates user and saves token in local storage
+    onLoggedIn(authData) {
+        console.log(authData);
+        this.setState({
+            user: authData.user.username,
+            token: authData.token
+        });
+
+        localStorage.setItem('token', authData.token);
+        localStorage.setItem('user', authData.user.username);
+        this.getMovies(authData.token);
+    }
+
     componentDidMount() {
-        axios.get('https://moobei.herokuapp.com/movies')
-            .then(res => {
-                console.log(res)
+        let accessToken = localStorage.getItem('token');
+        if (accessToken == null) {
+            this.setState({
+                user: localStorage.getItem('user')
+            });
+            this.getMovies(accessToken);
+        }
+    }
+
+    //Gets movies to an authorised user
+    getMovies(token) {
+        axios.get('https://moobei.herokuapp.com/movies', {
+            headers: { Authorization: `Bearer ${token}` }
+        })
+            .then(response => {
                 this.setState({
-                    movies: res.data
+                    movies: response.data
                 });
             })
-            .catch(err => {
-                console.log(err);
+            .catch(function (error) {
+                console.log(error);
             });
     }
 
@@ -44,8 +70,16 @@ class MainView extends React.Component {
         });
     }
 
+    onLoggedIn(user) {
+        this.setState({
+            user
+        });
+    }
+
     render() {
-        const { movies, selectedMovie } = this.state;
+        const { movies, selectedMovie, user } = this.state;
+
+        if (this.state.user === null) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
 
         if (movies.length === 0) return <div className="main-view" />;
 
@@ -54,14 +88,15 @@ class MainView extends React.Component {
                 <Navbar collapseOnSelect expand="lg" fixed="top" className="nav-bar" bg="dark" variant="dark">
                     <Navbar.Brand className="logo" href="#home">MooBee</Navbar.Brand>
                     <Nav className="mr-auto my-2 my-lg-0" style={{ maxHeight: '100px' }}>
-                        <Nav.Link href="#features">Directors</Nav.Link>
-                        <Nav.Link href="#pricing">Genres</Nav.Link>
+                        <Nav.Link href="#directors">Directors</Nav.Link>
+                        <Nav.Link href="#genres">Genres</Nav.Link>
                     </Nav>
                     <Form inline>
                         <Form.Control type="text" placeholder="Search" className="mr-sm-2" />
                         <Button variant="outline-info">Search</Button>
                     </Form>
                 </Navbar>
+                {/* <LoginView /> */}
                 <Row className="main-view justify-content-md-center">
                     {selectedMovie
                         ? (
@@ -71,13 +106,13 @@ class MainView extends React.Component {
                                     onBackClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }} />
                             </Col>
                         )
-                        :  movies.map(movie => (
+                        : movies.map(movie => (
                             <Col xs={12} sm={6} md={4} lg={4} >
-                                    <MovieCard
-                                        movieData={movie}
-                                        key={movie._id}
-                                        onMovieClick={(movie) => { this.setSelectedMovie(movie) }}
-                                    />)
+                                <MovieCard
+                                    movieData={movie}
+                                    key={movie._id}
+                                    onMovieClick={(movie) => { this.setSelectedMovie(movie) }}
+                                />)
                             </Col>
                         ))
                     }

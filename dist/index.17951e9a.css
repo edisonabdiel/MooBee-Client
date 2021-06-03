@@ -26,7 +26,10 @@
 .back-button {
   margin-top: 20px;
 }
-
+.form {
+  color: blanchedalmond;
+  margin: 200px 100px;
+}
 .logo {
   font-weight: 900;
   color: blanchedalmond;
