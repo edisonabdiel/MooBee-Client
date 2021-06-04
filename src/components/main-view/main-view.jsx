@@ -1,8 +1,9 @@
 import React from 'react';
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import axios from 'axios';
 import MovieCard from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
-import  LoginView  from '../login-view/login-view';
+import LoginView from '../login-view/login-view';
 import { RegisterView } from '../login-view/login-view';
 
 import Row from 'react-bootstrap/Row';
@@ -87,38 +88,35 @@ class MainView extends React.Component {
 
         return (
             <>
-                <Navbar collapseOnSelect expand="lg" fixed="top" className="nav-bar" bg="dark" variant="dark">
-                    <Navbar.Brand className="logo" href="#home"><img src={beeLogo} />{" "}MooBee</Navbar.Brand>
-                    <Nav className="mr-auto my-2 my-lg-0" style={{ maxHeight: '100px' }}>
-                        <Nav.Link href="#directors">Directors</Nav.Link>
-                        <Nav.Link href="#genres">Genres</Nav.Link>
-                    </Nav>
-                    <Form inline>
-                        <Form.Control type="text" placeholder="Search" className="mr-sm-2" />
-                        <Button variant="outline-info">Search</Button>
-                    </Form>
-                </Navbar>
-                {/* <LoginView /> */}
-                <Row className="main-view justify-content-md-center">
-                    {selectedMovie
-                        ? (
-                            <Col md={8} >
-                                <MovieView
-                                    movie={selectedMovie}
-                                    onBackClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }} />
+                <Router>
+                    <Navbar collapseOnSelect expand="lg" fixed="top" className="nav-bar" bg="dark" variant="dark">
+                        <Navbar.Brand className="logo" href="#home"><img src={beeLogo} />{" "}MooBee</Navbar.Brand>
+                        <Nav className="mr-auto my-2 my-lg-0" style={{ maxHeight: '100px' }}>
+                            <Nav.Link href="#directors">Directors</Nav.Link>
+                            <Nav.Link href="#genres">Genres</Nav.Link>
+                        </Nav>
+                        <Form inline>
+                            <Form.Control type="text" placeholder="Search" className="mr-sm-2" />
+                            <Button variant="outline-info">Search</Button>
+                        </Form>
+                    </Navbar>
+                    {/* <LoginView /> */}
+                    <Row className="main-view justify-content-md-center">
+                        <Route exact path="/" render={() => {
+                            return movies.map(m => (
+                                <Col md={8} key={m._id}>
+                                    <MovieCard movie={m} />
+                                </Col>
+                            ))
+                        }} />
+                        <Route path="/movies/:movieId" render={({ match }) => {
+                            return <Col xs={12} sm={6} md={4} lg={4}>
+                                <MovieView movie={movies.find(m => m._id === match.params.movieId)} />
                             </Col>
-                        )
-                        : movies.map(movie => (
-                            <Col xs={12} sm={6} md={4} lg={4} >
-                                <MovieCard
-                                    movieData={movie}
-                                    key={movie._id}
-                                    onMovieClick={(movie) => { this.setSelectedMovie(movie) }}
-                                />)
-                            </Col>
-                        ))
-                    }
-                </Row>
+                        }} />
+
+                    </Row>
+                </Router>
             </>
         );
     }
