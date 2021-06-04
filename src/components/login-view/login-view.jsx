@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Form from 'react-bootstrap/Form';
 import { Row } from 'react-bootstrap'
@@ -27,21 +28,23 @@ const LoginView = (props) => {
                 console.log(data)
             })
             .catch(e => {
-                console.log('no such user')
-            })
+                console.log('no such user');
+                alert("Please enter a valid username or password");
+            });
     }
 
     return (
         <Row className="justify-content-md-center">
             <Form className="form">
-                <h1>Login to MooBee</h1>
-                <Form.Group controlId="username" >
+                <h1>Welcome to MooBee</h1>
+                <p>Please login to continue!</p>
+                <Form.Group controlId="userName" >
                     <Form.Label>Username:</Form.Label>
-                    <Form.Control type="text" placeholder="@username" />
+                    <Form.Control type="text" placeholder="username" onChange={e => setUsername(e.target.value)} />
                 </Form.Group>
                 <Form.Group controlId="password">
                     <Form.Label>Password:</Form.Label>
-                    <Form.Control type="password" placeholder="password" />
+                    <Form.Control type="password" placeholder="password" onChange={e => setPassword(e.target.value)} />
                 </Form.Group>
                 <Button type="submit" variant="info" onClick={handleSubmit}>Login</Button>
             </Form>

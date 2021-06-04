@@ -14,6 +14,8 @@ import Button from 'react-bootstrap/Button';
 
 import './main-view.scss';
 
+import beeLogo from '../../assets/bee.png';
+
 
 class MainView extends React.Component {
 
@@ -41,7 +43,7 @@ class MainView extends React.Component {
 
     componentDidMount() {
         let accessToken = localStorage.getItem('token');
-        if (accessToken !== null) {
+        if (accessToken === null) {
             this.setState({
                 user: localStorage.getItem('user')
             });
@@ -86,7 +88,7 @@ class MainView extends React.Component {
         return (
             <>
                 <Navbar collapseOnSelect expand="lg" fixed="top" className="nav-bar" bg="dark" variant="dark">
-                    <Navbar.Brand className="logo" href="#home">MooBee</Navbar.Brand>
+                    <Navbar.Brand className="logo" href="#home"><img src={beeLogo} />{" "}MooBee</Navbar.Brand>
                     <Nav className="mr-auto my-2 my-lg-0" style={{ maxHeight: '100px' }}>
                         <Nav.Link href="#directors">Directors</Nav.Link>
                         <Nav.Link href="#genres">Genres</Nav.Link>
