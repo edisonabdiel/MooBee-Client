@@ -1,11 +1,16 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import axios from 'axios';
-import MovieCard from '../movie-card/movie-card';
-import { MovieView } from '../movie-view/movie-view';
-import LoginView from '../login-view/login-view';
-import { RegisterView } from '../login-view/login-view';
 
+//Custom Componets
+import MovieCard from '../movie-card/movie-card';
+import MovieView from '../movie-view/movie-view';
+import LoginView from '../login-view/login-view';
+import RegisterView from '../login-view/login-view';
+import GenreView from '../genre-view/genre-view';
+import DirectorView from '../director-view/director-view';
+
+// React-Bootstrap Components
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Navbar from 'react-bootstrap/Navbar';
@@ -13,8 +18,10 @@ import Nav from 'react-bootstrap/Nav';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
+// Styles
 import './main-view.scss';
 
+// Images
 import beeLogo from '../../assets/bee.png';
 
 
@@ -33,8 +40,7 @@ class MainView extends React.Component {
     onLoggedIn(authData) {
         console.log(authData);
         this.setState({
-            user: authData.user.username,
-            token: authData.token
+            user: authData.user.username
         });
 
         localStorage.setItem('token', authData.token);
@@ -44,16 +50,34 @@ class MainView extends React.Component {
 
     componentDidMount() {
         let accessToken = localStorage.getItem('token');
-        if (accessToken === null) {
+        if (accessToken !== null) {
             this.setState({
                 user: localStorage.getItem('user')
             });
             this.getMovies(accessToken);
+            console.log(accesToken)
         }
     }
 
     //Gets movies to an authorised user
-    getMovies(token) {
+    getMovies = (token) => {
+        axios.get('https://moobei.herokuapp.com/movies', {
+            headers: { Authorization: `Bearer ${token}` }
+        })
+            .then(response => {
+                console.log(response)
+                this.setState({
+                    movies: response.data
+                });
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+
+        console.log(movies)
+    }
+
+    componentDidMount(token) {
         axios.get('https://moobei.herokuapp.com/movies', {
             headers: { Authorization: `Bearer ${token}` }
         })
@@ -62,7 +86,7 @@ class MainView extends React.Component {
                     movies: response.data
                 });
             })
-            .catch(function (error) {
+            .catch(error => {
                 console.log(error);
             });
     }
@@ -73,45 +97,94 @@ class MainView extends React.Component {
         });
     }
 
-    onLoggedIn(user) {
+    onLoggedOut() {
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
         this.setState({
-            user
+            user: null
         });
     }
 
     render() {
-        const { movies, selectedMovie, user } = this.state;
+        const { movies, user } = this.state;
 
-        if (this.state.user === null) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
-
-        if (movies.length === 0) return <div className="main-view" />;
+        console.log(movies)
 
         return (
             <>
                 <Router>
                     <Navbar collapseOnSelect expand="lg" fixed="top" className="nav-bar" bg="dark" variant="dark">
-                        <Navbar.Brand className="logo" href="#home"><img src={beeLogo} />{" "}MooBee</Navbar.Brand>
+                        <Navbar.Brand className="logo">MooBee</Navbar.Brand>
                         <Nav className="mr-auto my-2 my-lg-0" style={{ maxHeight: '100px' }}>
                             <Nav.Link href="#directors">Directors</Nav.Link>
                             <Nav.Link href="#genres">Genres</Nav.Link>
+                            <Button variant="outline-danger" size="sm" onClick={() => this.onLoggedOut()}>Logout</Button>
                         </Nav>
                         <Form inline>
                             <Form.Control type="text" placeholder="Search" className="mr-sm-2" />
                             <Button variant="outline-info">Search</Button>
                         </Form>
                     </Navbar>
-                    {/* <LoginView /> */}
                     <Row className="main-view justify-content-md-center">
+
                         <Route exact path="/" render={() => {
-                            return movies.map(m => (
-                                <Col md={8} key={m._id}>
-                                    <MovieCard movie={m} />
+                            if (!user) return
+                            <Col>
+                                <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
+                            </Col>
+
+                            if (movies.length === 0) return <div className="main-view" />;
+
+                            return movies.map(movie => (
+                                <Col xs={12} sm={6} md={4} lg={4} key={m.id}>
+                                    <MovieCard
+                                        movieData={movie}
+                                        key={movie._id}
+                                    />)
                                 </Col>
                             ))
                         }} />
-                        <Route path="/movies/:movieId" render={({ match }) => {
-                            return <Col xs={12} sm={6} md={4} lg={4}>
-                                <MovieView movie={movies.find(m => m._id === match.params.movieId)} />
+
+                        <Route path="/register" render={() => {
+                            if (user) return <Redirect to="/" />
+                            return <Col>
+                                <RegisterView />
+                            </Col>
+                        }} />
+
+                        <Route path="/movies/movieId" render={({ match }) => {
+                            if (!user) return <Row>
+                                <Col>
+                                    <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
+                                </Col>
+                            </Row>
+                            return <Col md={8} >
+                                <MovieView movie={movies.find(movie => movie._id === match.params.movieId)} onBackClick={() => history.goBack()} />
+                            </Col>
+                        }} />
+
+                        <Route path="/directors/:name" render={({ match }) => {
+                            if (movies.length === 0) return <div className="main-view" />;
+                            if (!user) return <Row>
+                                <Col>
+                                    <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
+                                </Col>
+                            </Row>
+                            return <Col md={8}>
+                                <DirectorView director={movies.find(m => m.directors.name === match.params.name).directors} onBackClick={() => history.goBack()} />
+                            </Col>
+                        }
+                        } />
+
+                        <Route path="/genres/:name" render={({ match }) => {
+                            if (movies.length === 0) return <div className="main-view" />;
+                            if (!user) return <Row>
+                                <Col>
+                                    <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
+                                </Col>
+                            </Row>
+                            return <Col md={8} >
+                                <GenreView genre={movies.find(g => g.genres.name === match.params.name).genres} onBackClick={() => history.goBack()} />
                             </Col>
                         }} />
 
