@@ -9,6 +9,7 @@ import LoginView from '../login-view/login-view';
 import RegisterView from '../login-view/login-view';
 import GenreView from '../genre-view/genre-view';
 import DirectorView from '../director-view/director-view';
+import ProfileView from '../profile-view/profile-view';
 
 // React-Bootstrap Components
 import Row from 'react-bootstrap/Row';
@@ -23,6 +24,7 @@ import './main-view.scss';
 
 // Images
 import beeLogo from '../../assets/bee.png';
+import profileView from '../profile-view/profile-view';
 
 
 class MainView extends React.Component {
@@ -185,6 +187,18 @@ class MainView extends React.Component {
                             </Row>
                             return <Col md={8} >
                                 <GenreView genre={movies.find(g => g.genres.name === match.params.name).genres} onBackClick={() => history.goBack()} />
+                            </Col>
+                        }} />
+
+                        <Route path="/users/:username" render={({ }) => {
+                            if (movies.length === 0) return <div className="main-view" />;
+                            if (!user) return <Row>
+                                <Col>
+                                    <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
+                                </Col>
+                            </Row>
+                            return <Col md={8} >
+                                <ProfileView logOut={this.onLoggedOut} user={user} movies={movies} />
                             </Col>
                         }} />
 

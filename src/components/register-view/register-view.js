@@ -12,7 +12,7 @@ const RegisterView = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    axios.post('YOUR_API_URL/users', {
+    axios.post('https://moobei.herokuapp.com/users', {
         username: username,
         password: password,
         email: email

@@ -29,7 +29,6 @@ const LoginView = (props) => {
             })
             .catch(e => {
                 console.log('no such user');
-                alert("Please enter a valid username or password");
             });
     }
 
