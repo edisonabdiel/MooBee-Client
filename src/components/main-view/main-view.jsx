@@ -154,14 +154,15 @@ class MainView extends React.Component {
                             </Col>
                         }} />
 
-                        <Route path="/movies/movieId" render={({ match }) => {
+                        <Route path="/movies/:title" render={({ match }) => {
+                            if (movies.length === 0) return <div className="main-view" />;
                             if (!user) return <Row>
                                 <Col>
                                     <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
                                 </Col>
                             </Row>
                             return <Col md={8} >
-                                <MovieView movie={movies.find(movie => movie._id === match.params.movieId)} onBackClick={() => history.goBack()} />
+                                <MovieView movie={movies.find(movie => movie.title === match.params.title)} onBackClick={() => history.goBack()} />
                             </Col>
                         }} />
 
