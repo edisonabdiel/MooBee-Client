@@ -1,145 +1,181 @@
-// import React, { useState, useEffect } from 'react';
-// import axios from 'axios';
-// import PropTypes from 'prop-types';
-// import { Link } from 'react-router-dom';
+import React from 'react';
+import PropTypes from 'prop-types';
+import axios from 'axios';
 
-// // React-Bootstrap components
-// import { Col, Button, Form, Row, Container } from 'react-bootstrap';
+//REDUX ACTIONS
+import { connect } from 'react-redux';
+import { setUser, updateUser } from '../../actions/actions';
 
-// // Styles
-// import './profile-view.scss';
+//React-Bootstrap components
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
+import Form from 'react-bootstrap/Form';
 
 
-// const ProfileView = ({ movies, logOut }) => {
+export class ProfileView extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      validated: null
+    };
+    this.handleUpdate = this.handleUpdate.bind(this);
+    this.deRegister = this.deRegister.bind(this);
+  }
 
-//     const [favorites, setFavorites] = useState([]);
-//     const [user, setUser] = useState([]);
-//     const [isSuccessful, setisSuccessful] = useState(false);
+  handleUpdate(e, newUsername, newPassword, newEmail, newBirthday) {
+    this.setState({
+      validated: null,
+    });
 
-//     //Username and twk
-//     const localUsername = localStorage.getItem('user');
-//     const token = localStorage.getitem('token');
+    const form = e.currentTarget;
+    if (form.checkValidity() === false) {
+      e.preventDefault();
+      e.stopPropagation();
+      this.setState({
+        validated: true,
+      });
+      return;
+    }
+    e.preventDefault();
 
-//     useEffect(() => {
-//         axios.get(`https://moobei.herokuapp.com/users/${localUsername}`, { headers: { "Authorization": `Bearer ${token}` } })
-//             .then((res) => {
-//                 const userData = res.data;
-//                 setUser(userData);
-//             }).catch((e) => {
-//                 console.log(e)
-//             })
-//     }, [])
+    const token = localStorage.getItem('token');
+    const user = localStorage.getItem('user');
+    const url = 'https://myflixdb2000.herokuapp.com/users/';
 
-//     useEffect(() => {
-//         getFavs(user.FavoriteMovies)
-//     }, [])
+    axios({
+      method: 'put',
+      url: url + user,
+      headers: { Authorization: `Bearer ${token}` },
+      data: {
+        Username: newUsername ? newUsername : this.state.Username,
+        Password: newPassword ? newPassword : this.state.Password,
+        Email: newEmail ? newEmail : this.state.Email,
+        Birthday: newBirthday ? newBirthday : this.state.Birthday,
+      },
+    })
+      .then(response => {
+        this.setState({
+          Username: response.data.Username,
+          Password: response.data.Password,
+          Email: response.data.Email,
+          Birthday: response.data.Birthday,
+        });
+        alert('Changes have been saved!');
+        localStorage.setItem('user', this.state.Username);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
 
-//     const getFavs = (favs) => {
-//         let favoriteMovieList = [];
-//         movies.forEach((movie) => {
-//             favs.includes(movie._id) ? favoriteMovieList.push(movie) : favoriteMovieList
-//         });
-//         setFavorites(favoriteMovieList)
-//     };
+  setUsername(input) {
+    this.username = input;
+  }
 
-//     const toggleFav = (movieId) => {
-//         user.FavoriteMovies.includes(movieId) ?
-//             axios.delete(`https://moobei.herokuapp.com/users/${localUsername}/movies/${movieId}`, { headers: { "Authorization": `Bearer ${token}` } }
-//             ).then((res) => {
-//                 getFavs(res.data.FavoriteMovies)
-//             }).catch((e) => { console.log(e) })
+  setPassword(input) {
+    this.password = input;
+  }
 
-//             :
+  setEmail(input) {
+    this.email = input;
+  }
 
-//             axios.put(`https://myflix-0001.herokuapp.com/users/${localUsername}/movies/${movieId}`, {}, { headers: { "Authorization": `Bearer ${token}` } }
-//             ).then((res) => {
-//                 ToggleFavorites(res.data.FavoriteMovies)
-//                 getFavs(res.data.FavoriteMovies)
-//             }).catch((e) => {
-//                 console.log(e.message)
-//             })
-//     }
+  setBirthday(input) {
+    this.birthday = input;
+  }
 
-//     const updateUser = (e) => {
-//         e.preventDefault();
-//         axios.put(`https://moobei.herokuapp.com/users/${user._id}`, {
-//             name: name,
-//             username: username,
-//             email: email,
-//             password: password
-//         }, { headers: { "Authorization": `Bearer ${token}` } },
-//         ).then((res) => {
-//             res.status == 200 ? setItsSuccesful(true) : setisSuccessful(false);
-//         }).catch((e) => {
-//             console.error('error trying to edit:' + e)
-//         })
-//     }
+  deRegister(e) {
+    e.preventDefault();
+    const token = localStorage.getItem('token');
+    const user = localStorage.getItem('user');
+    const url = 'https://moobei.herokuapp.com/users/';
 
-//     const handleAccountDelete = () => {
-//         axios.delete(`https://moobei.herokuapp.com/users/${user.username}`, { headers: { "Authorization": `Bearer ${token}` } })
-//             .then((res) => {
-//                 console.info(res);
-//                 logOut();
-//             })
-//     }
+    axios.delete(url + user, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then( result => {
+        localStorage.clear();
+        setUser({
+          user: null,
+          token: null
+        });
+        window.open('/', '_self');
+        alert('Your account has been deleted!');
+      })
+      .catch(() => {
+        console.log('error deleting the user');
+      });
+  }
 
-// }
+  render() {
+    const { validated } = this.state;
+    const { onBackClick } = this.props;
+    const validated = null
+    const username = localStorage.getItem('user');
+    
 
-// return (
-//     <>
-//         <Row className="justify-content-md-center" >
-//             <Form>
-//                 <Form.Group controlId="name">
-//                     <Form.Label>Name</Form.Label>
-//                     <Form.Control type="text" placeholder="Enter name" defaultValue={user.name} onChange={e => ValidateUser(e.target.value, "Name")} />
+  return (
+    <div>
+      <Card className="my-3">
+        <Card.Body>
+          <Form noValidate validated={validated} className='update-form' onSubmit={(e) => this.handleUpdate(e, this.username, this.password, this.email, this.birthday )}>
+            <Row className="justify-content-center">
+              <Col xs={10} md={8} lg={6}>
+                <h5>Update your Profile</h5>
+                <Form.Group controlId="BasicUsername">
+                  <Form.Label>Username:</Form.Label>
+                  <Form.Control type="text"
+                  placeholder="Enter current or new Username"
+                  autoComplete="username"
+                  onChange={(e) => this.setUsername(e.target.value )} 
+                  pattern='[a-zA-Z0-9]{5,}'
+                  minLength="5" />
+                  <Form.Control.Feedback type='invalid'>Enter a Username with at least 5 alphanumeric characters</Form.Control.Feedback>
+                </Form.Group>
+                <Form.Group controlId="BasicPassword">
+                  <Form.Label>Password:*</Form.Label>
+                  <Form.Control type="password"
+                  placeholder="Enter current or new Password"
+                  autoComplete="password"
+                  onChange={(e) => this.setPassword(e.target.value )} minLength="5" required />
+                  <Form.Control.Feedback type='invalid'>Enter a valid password with at least 5 characters</Form.Control.Feedback>
+                </Form.Group>
+                <Form.Group controlId="BasicEmail">
+                  <Form.Label>Email:</Form.Label>
+                  <Form.Control type="email"
+                  placeholder="Change email" 
+                  autoComplete="email"
+                  onChange={(e) => this.setEmail(e.target.value )} />
+                  <Form.Control.Feedback type='invalid'>Please enter a valid email address.</Form.Control.Feedback>
+                </Form.Group>
+                <Button variant="secondary" type="submit">Update</Button><hr />
+                <Button variant="secondary" className="my-2" onClick={() => { onBackClick(null); }}>Back</Button>
+                <p className="my-3">Deregister Account: - Cannot be undone!</p>
+                <Button variant="danger"  onClick={(e) => this.deRegister(e)}>Deregister</Button>
+              </Col>
+            </Row>
+          </Form>
+        </Card.Body>
+      </Card>
+    </div>
+  )}
+}
 
-//                 </Form.Group>
+PropTypes.checkPropTypes(ProfileView.propTypes);
+ProfileView.propTypes = {
+  user: PropTypes.string.isRequired,
+  onBackClick: PropTypes.func.isRequired
+}
 
-//                 {Object.keys(nameErr).map((key) => {
-//                     return <div className="error-message" >{nameErr[key]}</div>
-//                 })}
 
-//                 <Form.Group controlId="username">
-//                     <Form.Label>Username</Form.Label>
-//                     <Form.Control type="text" placeholder="Enter username" defaultValue={user.username} onChange={e => ValidateUser(e.target.value, "username")} />
-//                 </Form.Group>
+const mapStateToProps = (state) => {
+  const { user, movies } = state;
+  return { 
+    user, 
+    movies 
+  }
+}
 
-//                 {Object.keys(usernameErr).map((key) => {
-//                     return <div className="error-message" >{usernameErr[key]}</div>
-//                 })}
-
-//                 <Form.Group controlId="email">
-//                     <Form.Label>Email Address</Form.Label>
-//                     <Form.Control type="email" placeholder="Enter email" defaultValue={user.email} onChange={e => ValidateUser(e.target.value, "email")} />
-//                 </Form.Group>
-
-//                 {Object.keys(emailErr).map((key) => {
-//                     return <div className="error-message" >{emailErr[key]}</div>
-//                 })}
-
-//                 <Form.Group controlId="password">
-//                     <Form.Label>Password</Form.Label>
-//                     <Form.Control type="password" placeholder="Password" onChange={e => ValidateUser(e.target.value, "password")} />
-//                 </Form.Group>
-
-//                 <Form.Group controlId="password-repeat">
-//                     <Form.Label>Repeat Password</Form.Label>
-//                     <Form.Control type="password" placeholder="Repeat Password" defaultValue={passwordRepeat} onChange={e => setPasswordRepeat(e.target.value)} />
-//                 </Form.Group>
-
-//                 {Object.keys(passwordErr).map((key) => {
-//                     return <div className="m-1" >{passwordErr[key]}</div>
-//                 })}
-
-//                 <Link to="/profile">
-//                     <Button onClick={updateUser} variant="dark" type="submit" className="mt-3 mr-3">
-//                         Save Changes
-//                     </Button>
-//                 </Link>
-//                 <Button variant="danger" onClick={handleAccountDelete} type="submit" >Delete Account</Button>
-//             </Form>
-//         </Row>
-//     </>
-// )
-
-// export default ProfileView;
+export default connect(mapStateToProps, { setUser, updateUser })(ProfileView);

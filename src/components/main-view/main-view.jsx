@@ -120,6 +120,7 @@ class MainView extends React.Component {
                         <Nav className="mr-auto my-2 my-lg-0" style={{ maxHeight: '100px' }}>
                             <Nav.Link href="#directors">Directors</Nav.Link>
                             <Nav.Link href="#genres">Genres</Nav.Link>
+                            <Nav.Link href="/profile">Profile</Nav.Link>
                             <Button variant="outline-danger" size="sm" onClick={() => this.onLoggedOut()}>Logout</Button>
                         </Nav>
                         <Form inline>
@@ -174,7 +175,7 @@ class MainView extends React.Component {
                                 </Col>
                             </Row>
                             return <Col md={8}>
-                                <DirectorView director={movies.find(m => m.directors.name === match.params.name).directors} onBackClick={() => history.goBack()} />
+                                <DirectorView director={movies.find(movie => movie.directors.name === match.params.name).directors} onBackClick={() => history.goBack()} />
                             </Col>
                         }
                         } />

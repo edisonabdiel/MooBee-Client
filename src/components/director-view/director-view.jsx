@@ -5,12 +5,13 @@ import PropTypes from 'prop-types';
 import { Button } from 'react-bootstrap';
 
 const DirectorView = ({ director, onBackClick }) => {
+
+  console.log(director)
   return (
     <>
       <h2>{director.name}</h2>
       <h3>{director.bio}</h3>
-      <h3>{director.birthday}</h3>
-      <h3>{director.deathday}</h3>
+      <h3>{director.born}</h3>
       <Button onClick={onBackClick}>Back</Button>
     </>
   )

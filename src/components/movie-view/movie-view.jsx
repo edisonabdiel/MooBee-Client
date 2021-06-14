@@ -5,7 +5,8 @@ import {Link} from 'react-router-dom';
 
 import './movie-view.scss';
 
-const MovieView = ({ movie, onBackClick}) => {
+const MovieView = ({ movie, onBackClick }) => {
+    console.log(movie)
         return (
             <div className="movie-view">
                 <div className="movie-poster">
@@ -19,10 +20,10 @@ const MovieView = ({ movie, onBackClick}) => {
                 </h5>
                 <Button variant="info" className="back-button" onClick={() => { onBackClick(); }}>Back</Button>
 
-                <Link to={`/directors/${movie.director.name}`}>
+                <Link to={`/directors/${movie.director}`}>
                     <Button variant="dark">Director</Button>
                 </Link>
-                <Link to={`/genres/${movie.genre.name}`}>
+                <Link to={`/genres/${movie.genre}`}>
                     <Button variant="dark">Genre</Button>
                 </Link>
             </div>
