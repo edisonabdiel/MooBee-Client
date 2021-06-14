@@ -34,8 +34,10 @@
   font-weight: 900;
   color: blanchedalmond;
 }
-.error-massage {
-  color: red;
+
+.logo-img {
+  width: 50%;
+  height: 50%;
 }
 body {
   font-family: "Noto Serif JP", serif;

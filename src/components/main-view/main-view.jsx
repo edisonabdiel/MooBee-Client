@@ -9,7 +9,7 @@ import LoginView from '../login-view/login-view';
 import RegisterView from '../login-view/login-view';
 import GenreView from '../genre-view/genre-view';
 import DirectorView from '../director-view/director-view';
-import ProfileView from '../profile-view/profile-view';
+// import ProfileView from '../profile-view/profile-view';
 
 // React-Bootstrap Components
 import Row from 'react-bootstrap/Row';
@@ -24,7 +24,6 @@ import './main-view.scss';
 
 // Images
 import beeLogo from '../../assets/bee.png';
-import profileView from '../profile-view/profile-view';
 
 
 class MainView extends React.Component {
@@ -57,7 +56,6 @@ class MainView extends React.Component {
                 user: localStorage.getItem('user')
             });
             this.getMovies(accessToken);
-            console.log(accesToken)
         }
     }
 
@@ -75,23 +73,21 @@ class MainView extends React.Component {
             .catch((error) => {
                 console.log(error);
             });
-
-        console.log(movies)
     }
 
-    componentDidMount(token) {
-        axios.get('https://moobei.herokuapp.com/movies', {
-            headers: { Authorization: `Bearer ${token}` }
-        })
-            .then(response => {
-                this.setState({
-                    movies: response.data
-                });
-            })
-            .catch(error => {
-                console.log(error);
-            });
-    }
+    // componentDidMount(token) {
+    //     axios.get('https://moobei.herokuapp.com/movies', {
+    //         headers: { Authorization: `Bearer ${token}` }
+    //     })
+    //         .then(response => {
+    //             this.setState({
+    //                 movies: response.data
+    //             });
+    //         })
+    //         .catch(error => {
+    //             console.log(error);
+    //         });
+    // }
 
     setSelectedMovie(newSelectedMovie) {
         this.setState({
@@ -110,7 +106,11 @@ class MainView extends React.Component {
     render() {
         const { movies, user } = this.state;
 
-        console.log(movies)
+        if (!user) return (
+            <Col>
+                <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
+            </Col>
+        )
 
         return (
             <>
@@ -138,7 +138,7 @@ class MainView extends React.Component {
                             if (movies.length === 0) return <div className="main-view" />;
 
                             return movies.map(movie => (
-                                <Col xs={12} sm={6} md={4} lg={4} key={m.id}>
+                                <Col xs={12} sm={6} md={4} lg={4} key={movie.id}>
                                     <MovieCard
                                         movieData={movie}
                                         key={movie._id}
@@ -186,11 +186,11 @@ class MainView extends React.Component {
                                 </Col>
                             </Row>
                             return <Col md={8} >
-                                <GenreView genre={movies.find(g => g.genres.name === match.params.name).genres} onBackClick={() => history.goBack()} />
+                                <GenreView genre={movies.find(g => g.genres.name === match.params.name).genres} movies={movies} onBackClick={() => history.goBack()} />
                             </Col>
                         }} />
 
-                        <Route path="/users/:username" render={({ }) => {
+                        {/* <Route path="/users/:username" render={({ }) => {
                             if (movies.length === 0) return <div className="main-view" />;
                             if (!user) return <Row>
                                 <Col>
@@ -200,7 +200,7 @@ class MainView extends React.Component {
                             return <Col md={8} >
                                 <ProfileView logOut={this.onLoggedOut} user={user} movies={movies} />
                             </Col>
-                        }} />
+                        }} /> */}
 
                     </Row>
                 </Router>
