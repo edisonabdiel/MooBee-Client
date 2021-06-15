@@ -18,13 +18,13 @@ const MovieView = ({ movie, onBackClick }) => {
                 <h5 className="movie-description">
                     <span className="value">{movie.description}</span>
                 </h5>
-                <Button variant="info" className="back-button" onClick={() => { onBackClick(); }}>Back</Button>
+                <Button variant="info" className="button" onClick={() => { onBackClick(); }}>Back</Button>
 
                 <Link to={`/directors/${movie.director}`}>
-                    <Button variant="dark">Director</Button>
+                    <Button variant="dark" className="button">{movie.director}</Button>
                 </Link>
                 <Link to={`/genres/${movie.genre}`}>
-                    <Button variant="dark">Genre</Button>
+                    <Button variant="dark" className="button">{movie.genre}</Button>
                 </Link>
             </div>
         );

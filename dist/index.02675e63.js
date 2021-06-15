@@ -26617,7 +26617,7 @@ try {
           }
         }), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Route, {
           path: "/movies/:title",
-          render: ({match}) => {
+          render: ({match, history}) => {
             if (movies.length === 0) return (
               /*#__PURE__*/_reactDefault.default.createElement("div", {
                 className: "main-view",
@@ -26683,7 +26683,7 @@ try {
           }
         }), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Route, {
           path: "/directors/:name",
-          render: ({match}) => {
+          render: ({match, history}) => {
             if (movies.length === 0) return (
               /*#__PURE__*/_reactDefault.default.createElement("div", {
                 className: "main-view",
@@ -26730,7 +26730,7 @@ try {
                   columnNumber: 36
                 }
               }, /*#__PURE__*/_reactDefault.default.createElement(_directorViewDirectorViewDefault.default, {
-                director: movies.find(movie => movie.directors.name === match.params.name).directors,
+                director: movies.find(movie => movie.director === match.params.name).director,
                 onBackClick: () => history.goBack(),
                 __self: this,
                 __source: {
@@ -26749,7 +26749,7 @@ try {
           }
         }), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Route, {
           path: "/genres/:name",
-          render: ({match}) => {
+          render: ({match, history}) => {
             if (movies.length === 0) return (
               /*#__PURE__*/_reactDefault.default.createElement("div", {
                 className: "main-view",
@@ -33487,7 +33487,7 @@ try {
         }
       }, movie.description)), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapButtonDefault.default, {
         variant: "info",
-        className: "back-button",
+        className: "button",
         onClick: () => {
           onBackClick();
         },
@@ -33507,13 +33507,14 @@ try {
         }
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapButtonDefault.default, {
         variant: "dark",
+        className: "button",
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
           lineNumber: 24,
           columnNumber: 21
         }
-      }, "Director")), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
+      }, movie.director)), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
         to: `/genres/${movie.genre}`,
         __self: undefined,
         __source: {
@@ -33523,13 +33524,14 @@ try {
         }
       }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapButtonDefault.default, {
         variant: "dark",
+        className: "button",
         __self: undefined,
         __source: {
           fileName: _jsxFileName,
           lineNumber: 27,
           columnNumber: 21
         }
-      }, "Genre")))
+      }, movie.genre)))
     );
   };
   _c = MovieView;
@@ -46688,9 +46690,10 @@ try {
   var _movieCardMovieCard = require('../movie-card/movie-card');
   var _movieCardMovieCardDefault = _parcelHelpers.interopDefault(_movieCardMovieCard);
   var _jsxFileName = "/Users/edisonmasis/CareerFoundryTasks/Achievement_4/movie_client/src/components/genre-view/genre-view.jsx";
-  const GenreView = ({movies, onBackClick}) => {
+  const GenreView = ({movies, history, onBackClick}) => {
     return (
       /*#__PURE__*/_reactDefault.default.createElement(_reactDefault.default.Fragment, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
+        variant: "light",
         onClick: onBackClick,
         __self: undefined,
         __source: {
@@ -46784,7 +46787,7 @@ try {
   var _propTypesDefault = _parcelHelpers.interopDefault(_propTypes);
   var _reactBootstrap = require('react-bootstrap');
   var _jsxFileName = "/Users/edisonmasis/CareerFoundryTasks/Achievement_4/movie_client/src/components/director-view/director-view.jsx";
-  const DirectorView = ({director, onBackClick}) => {
+  const DirectorView = ({movies, director, onBackClick}) => {
     console.log(director);
     return (
       /*#__PURE__*/_reactDefault.default.createElement(_reactDefault.default.Fragment, null, /*#__PURE__*/_reactDefault.default.createElement("h2", {

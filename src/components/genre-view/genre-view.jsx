@@ -5,10 +5,10 @@ import { Container, Row, Col, Button } from 'react-bootstrap';
 
 import MovieCard from '../movie-card/movie-card';
 
-const  GenreView = ({ movies, onBackClick }) => {
+const  GenreView = ({ movies, history, onBackClick }) => {
   return (
     <>
-      <Button onClick={onBackClick}> Back </Button>
+      <Button variant="light" onClick={onBackClick}> Back </Button>
       <div>
         <pre>{movies[0].genre.name}</pre>
         <pre>{movies[0].genre.description}</pre>

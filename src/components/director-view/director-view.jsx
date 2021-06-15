@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 // React-bootstrap components 
 import { Button } from 'react-bootstrap';
 
-const DirectorView = ({ director, onBackClick }) => {
+const DirectorView = ({ movies, director, onBackClick }) => {
 
-  console.log(director)
+  console.log(director);
   return (
     <>
       <h2>{director.name}</h2>

@@ -155,7 +155,7 @@ class MainView extends React.Component {
                             </Col>
                         }} />
 
-                        <Route path="/movies/:title" render={({ match }) => {
+                        <Route path="/movies/:title" render={({ match, history }) => {
                             if (movies.length === 0) return <div className="main-view" />;
                             if (!user) return <Row>
                                 <Col>
@@ -167,7 +167,7 @@ class MainView extends React.Component {
                             </Col>
                         }} />
 
-                        <Route path="/directors/:name" render={({ match }) => {
+                        <Route path="/directors/:name" render={({ match, history }) => {
                             if (movies.length === 0) return <div className="main-view" />;
                             if (!user) return <Row>
                                 <Col>
@@ -175,12 +175,12 @@ class MainView extends React.Component {
                                 </Col>
                             </Row>
                             return <Col md={8}>
-                                <DirectorView director={movies.find(movie => movie.directors.name === match.params.name).directors} onBackClick={() => history.goBack()} />
+                                <DirectorView director={movies.find(movie => movie.director === match.params.name).director} onBackClick={() => history.goBack()} />
                             </Col>
                         }
                         } />
 
-                        <Route path="/genres/:name" render={({ match }) => {
+                        <Route path="/genres/:name" render={({ match, history }) => {
                             if (movies.length === 0) return <div className="main-view" />;
                             if (!user) return <Row>
                                 <Col>
