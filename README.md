@@ -23,5 +23,5 @@
 </ul>
 
 <h3>API:</h3>
-<a href="https://github.com/edisonabdiel/Moobee-server" target="_blank">Moobee-server</a>
+<a href="https://github.com/edisonabdiel/Moobee-server" target="_blank" rel="noopener noreferrer">Moobee-server</a>
 
