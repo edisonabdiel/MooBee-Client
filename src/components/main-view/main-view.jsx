@@ -1,15 +1,23 @@
-import React from 'react';
+//React Modules
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import axios from 'axios';
+
+//REDUX 
+import { connect } from 'react-redux';
 
 //Custom Componets
 import MovieCard from '../movie-card/movie-card';
 import MovieView from '../movie-view/movie-view';
+import MoviesList from '../movie-list/movie-list';
 import LoginView from '../login-view/login-view';
 import RegisterView from '../login-view/login-view';
 import GenreView from '../genre-view/genre-view';
 import DirectorView from '../director-view/director-view';
 // import ProfileView from '../profile-view/profile-view';
+
+//Actions
+import { setUser, setMovies } from '../../actions/actions';
 
 // React-Bootstrap Components
 import Row from 'react-bootstrap/Row';
@@ -25,88 +33,71 @@ import './main-view.scss';
 // Images
 import beeLogo from '../../assets/bee.png';
 
-
-class MainView extends React.Component {
-
-    constructor() {
-        super();
-        this.state = {
-            movies: [],
-            selectedMovie: null,
-            user: null
-        };
-    }
+//OOP component
+const MainView = ({ user, movies, setUser, setMovies }) => {
 
     // Authenticates user and saves token in local storage
-    onLoggedIn(authData) {
-        console.log(authData);
-        this.setState({
-            user: authData.user.username
-        });
-
+    const onLoggedin = (authData) => {
+        console.log(authData)
+        setUser({
+            data: authData.user,
+            token: authData.token
+        }, 'login');
+        // LocalStorage will be used as a to retrive current user if needed
+        localStorage.setItem('user', JSON.stringify(authData.user));
         localStorage.setItem('token', authData.token);
-        localStorage.setItem('user', authData.user.username);
-        this.getMovies(authData.token);
+
+        getMovies(authData.token);
     }
 
-    componentDidMount() {
-        let accessToken = localStorage.getItem('token');
-        if (accessToken !== null) {
-            this.setState({
-                user: localStorage.getItem('user')
-            });
-            this.getMovies(accessToken);
+    useEffect(() => {
+        let token = localStorage.getItem('token');
+        let user = localStorage.getItem('user');
+        if (token !== null) {
+            getUser(token, (user));
+            getMovies(token);
         }
-    }
+    }, []);
+
+    const getUser = (token, user) => {
+        axios.get(`https://moobei.herokuapp.com/users/${user.username}`, {
+          headers: {Authorization: `Bearer ${token}`}
+        })
+        .then( user => {
+          setUser({
+            data: user.data,
+            token: token
+          }, 'refresh');
+        })
+        .catch( err => {
+          console.log(err);
+        })
+      }
 
     //Gets movies to an authorised user
-    getMovies = (token) => {
+    const getMovies = (token) => {
         axios.get('https://moobei.herokuapp.com/movies', {
             headers: { Authorization: `Bearer ${token}` }
         })
             .then(response => {
-                console.log(response)
-                this.setState({
-                    movies: response.data
-                });
+                console.log(response.data);
+                setMovies(response.data);
             })
             .catch((error) => {
                 console.log(error);
             });
     }
 
-    // componentDidMount(token) {
-    //     axios.get('https://moobei.herokuapp.com/movies', {
-    //         headers: { Authorization: `Bearer ${token}` }
-    //     })
-    //         .then(response => {
-    //             this.setState({
-    //                 movies: response.data
-    //             });
-    //         })
-    //         .catch(error => {
-    //             console.log(error);
-    //         });
-    // }
-
-    setSelectedMovie(newSelectedMovie) {
-        this.setState({
-            selectedMovie: newSelectedMovie
-        });
-    }
-
-    onLoggedOut() {
+    const onLoggedOut = () => {
         localStorage.removeItem('token');
         localStorage.removeItem('user');
-        this.setState({
+        setUser({
             user: null
         });
     }
 
-    render() {
-        const { movies, user } = this.state;
 
-        if (!user) return (
+      if (!user) return (
             <Col>
                 <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
             </Col>
@@ -118,10 +109,10 @@ class MainView extends React.Component {
                     <Navbar collapseOnSelect expand="lg" fixed="top" className="nav-bar" bg="dark" variant="dark">
                         <Navbar.Brand className="logo">MooBee</Navbar.Brand>
                         <Nav className="mr-auto my-2 my-lg-0" style={{ maxHeight: '100px' }}>
-                            <Nav.Link href="#directors">Directors</Nav.Link>
-                            <Nav.Link href="#genres">Genres</Nav.Link>
-                            <Nav.Link href="/profile">Profile</Nav.Link>
-                            <Button variant="outline-danger" size="sm" onClick={() => this.onLoggedOut()}>Logout</Button>
+                            <Nav.Link href="/">Home</Nav.Link>
+                            <Nav.Link href="/genres">Genres</Nav.Link>
+                            <Nav.Link href="/directors">Directors</Nav.Link>
+                            <Button variant="outline-danger" size="sm" onClick={() => onLoggedOut()}>Logout</Button>
                         </Nav>
                         <Form inline>
                             <Form.Control type="text" placeholder="Search" className="mr-sm-2" />
@@ -133,19 +124,12 @@ class MainView extends React.Component {
                         <Route exact path="/" render={() => {
                             if (!user) return
                             <Col>
-                                <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
+                                <LoginView onLoggedIn={user => {onLoggedIn(user)}} />
                             </Col>
 
                             if (movies.length === 0) return <div className="main-view" />;
 
-                            return movies.map(movie => (
-                                <Col xs={12} sm={6} md={4} lg={4} key={movie.id}>
-                                    <MovieCard
-                                        movieData={movie}
-                                        key={movie._id}
-                                    />)
-                                </Col>
-                            ))
+                            return <MoviesList movies={movies} />
                         }} />
 
                         <Route path="/register" render={() => {
@@ -159,7 +143,7 @@ class MainView extends React.Component {
                             if (movies.length === 0) return <div className="main-view" />;
                             if (!user) return <Row>
                                 <Col>
-                                    <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
+                                    <LoginView onLoggedIn={user => {onLoggedIn(user)}} />
                                 </Col>
                             </Row>
                             return <Col md={8} >
@@ -171,7 +155,7 @@ class MainView extends React.Component {
                             if (movies.length === 0) return <div className="main-view" />;
                             if (!user) return <Row>
                                 <Col>
-                                    <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
+                                    <LoginView onLoggedIn={user => {onLoggedIn(user)}} />
                                 </Col>
                             </Row>
                             return <Col md={8}>
@@ -184,7 +168,7 @@ class MainView extends React.Component {
                             if (movies.length === 0) return <div className="main-view" />;
                             if (!user) return <Row>
                                 <Col>
-                                    <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
+                                    <LoginView onLoggedIn={user => {onLoggedIn(user)}} />
                                 </Col>
                             </Row>
                             return <Col md={8} >
@@ -196,11 +180,11 @@ class MainView extends React.Component {
                             if (movies.length === 0) return <div className="main-view" />;
                             if (!user) return <Row>
                                 <Col>
-                                    <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
+                                    <LoginView onLoggedIn={user => {onLoggedIn(user)}} />
                                 </Col>
                             </Row>
                             return <Col md={8} >
-                                <ProfileView logOut={this.onLoggedOut} user={user} movies={movies} />
+                                <ProfileView logOut={onLoggedOut} user={user} movies={movies} />
                             </Col>
                         }} /> */}
 
@@ -209,6 +193,11 @@ class MainView extends React.Component {
             </>
         );
     }
+
+const mapStateToProps = state => {
+    return {
+        movies: state.movies
+    }
 }
 
-export default MainView;
+export default connect(mapStateToProps, { setMovies })(MainView);

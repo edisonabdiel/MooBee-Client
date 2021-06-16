@@ -1,181 +1,55 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import axios from 'axios';
+import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 
-//REDUX ACTIONS
-import { connect } from 'react-redux';
-import { setUser, updateUser } from '../../actions/actions';
+// Component 
+import axios from 'axios'
 
-//React-Bootstrap components
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
-import Form from 'react-bootstrap/Form';
+import { connect } from 'react-redux'
 
+// React-bootdtrap components 
+import { Row, Col, Button } from 'react-bootstrap'
+import { MovieCard } from '../movieCard/movieCard'
 
-export class ProfileView extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      validated: null
-    };
-    this.handleUpdate = this.handleUpdate.bind(this);
-    this.deRegister = this.deRegister.bind(this);
-  }
+import './profileView'
 
-  handleUpdate(e, newUsername, newPassword, newEmail, newBirthday) {
-    this.setState({
-      validated: null,
-    });
+const mapStateToProps = state => {
+  const { user, movies } = state;
+  return { user, movies };
+}
 
-    const form = e.currentTarget;
-    if (form.checkValidity() === false) {
-      e.preventDefault();
-      e.stopPropagation();
-      this.setState({
-        validated: true,
-      });
-      return;
-    }
-    e.preventDefault();
+const ProfileView = ({ user, token, movies, onBackClick }) => {
+  const [userFavorites, setUserFavorites] = useState(() => {
+    const favorites = []
 
-    const token = localStorage.getItem('token');
-    const user = localStorage.getItem('user');
-    const url = 'https://myflixdb2000.herokuapp.com/users/';
-
-    axios({
-      method: 'put',
-      url: url + user,
-      headers: { Authorization: `Bearer ${token}` },
-      data: {
-        Username: newUsername ? newUsername : this.state.Username,
-        Password: newPassword ? newPassword : this.state.Password,
-        Email: newEmail ? newEmail : this.state.Email,
-        Birthday: newBirthday ? newBirthday : this.state.Birthday,
-      },
+    movies.map(m => {
+      user.data.movies.indexOf(m._id) !== -1 ? favorites.push(m) : false;
     })
-      .then(response => {
-        this.setState({
-          Username: response.data.Username,
-          Password: response.data.Password,
-          Email: response.data.Email,
-          Birthday: response.data.Birthday,
-        });
-        alert('Changes have been saved!');
-        localStorage.setItem('user', this.state.Username);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }
 
-  setUsername(input) {
-    this.username = input;
-  }
-
-  setPassword(input) {
-    this.password = input;
-  }
-
-  setEmail(input) {
-    this.email = input;
-  }
-
-  setBirthday(input) {
-    this.birthday = input;
-  }
-
-  deRegister(e) {
-    e.preventDefault();
-    const token = localStorage.getItem('token');
-    const user = localStorage.getItem('user');
-    const url = 'https://moobei.herokuapp.com/users/';
-
-    axios.delete(url + user, {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then( result => {
-        localStorage.clear();
-        setUser({
-          user: null,
-          token: null
-        });
-        window.open('/', '_self');
-        alert('Your account has been deleted!');
-      })
-      .catch(() => {
-        console.log('error deleting the user');
-      });
-  }
-
-  render() {
-    const { validated } = this.state;
-    const { onBackClick } = this.props;
-    const validated = null
-    const username = localStorage.getItem('user');
-    
+    return favorites;
+  });
 
   return (
-    <div>
-      <Card className="my-3">
-        <Card.Body>
-          <Form noValidate validated={validated} className='update-form' onSubmit={(e) => this.handleUpdate(e, this.username, this.password, this.email, this.birthday )}>
-            <Row className="justify-content-center">
-              <Col xs={10} md={8} lg={6}>
-                <h5>Update your Profile</h5>
-                <Form.Group controlId="BasicUsername">
-                  <Form.Label>Username:</Form.Label>
-                  <Form.Control type="text"
-                  placeholder="Enter current or new Username"
-                  autoComplete="username"
-                  onChange={(e) => this.setUsername(e.target.value )} 
-                  pattern='[a-zA-Z0-9]{5,}'
-                  minLength="5" />
-                  <Form.Control.Feedback type='invalid'>Enter a Username with at least 5 alphanumeric characters</Form.Control.Feedback>
-                </Form.Group>
-                <Form.Group controlId="BasicPassword">
-                  <Form.Label>Password:*</Form.Label>
-                  <Form.Control type="password"
-                  placeholder="Enter current or new Password"
-                  autoComplete="password"
-                  onChange={(e) => this.setPassword(e.target.value )} minLength="5" required />
-                  <Form.Control.Feedback type='invalid'>Enter a valid password with at least 5 characters</Form.Control.Feedback>
-                </Form.Group>
-                <Form.Group controlId="BasicEmail">
-                  <Form.Label>Email:</Form.Label>
-                  <Form.Control type="email"
-                  placeholder="Change email" 
-                  autoComplete="email"
-                  onChange={(e) => this.setEmail(e.target.value )} />
-                  <Form.Control.Feedback type='invalid'>Please enter a valid email address.</Form.Control.Feedback>
-                </Form.Group>
-                <Button variant="secondary" type="submit">Update</Button><hr />
-                <Button variant="secondary" className="my-2" onClick={() => { onBackClick(null); }}>Back</Button>
-                <p className="my-3">Deregister Account: - Cannot be undone!</p>
-                <Button variant="danger"  onClick={(e) => this.deRegister(e)}>Deregister</Button>
+    <>
+      <Button className="btn-light border-dark mr-2 " onClick={onBackClick}>Back</Button>
+      <Row>
+        {
+          userFavorites.length === 0
+            ? <Col><h2>No have no favorites... </h2></Col>
+            : userFavorites.map((m, i) => (
+              <Col key={`col-${i}`}>
+                <MovieCard key={`movie-${i}`} movie={m} />
               </Col>
-            </Row>
-          </Form>
-        </Card.Body>
-      </Card>
-    </div>
-  )}
+            ))
+        }
+      </Row>
+      </>
+        )
+        }
+
+ProfileView.prototypes = {
+          user: PropTypes.object,
+  token: PropTypes.string,
+  onBackClick: PropTypes.func,
 }
 
-PropTypes.checkPropTypes(ProfileView.propTypes);
-ProfileView.propTypes = {
-  user: PropTypes.string.isRequired,
-  onBackClick: PropTypes.func.isRequired
-}
-
-
-const mapStateToProps = (state) => {
-  const { user, movies } = state;
-  return { 
-    user, 
-    movies 
-  }
-}
-
-export default connect(mapStateToProps, { setUser, updateUser })(ProfileView);
+export default connect(mapStateToProps)(ProfileView);

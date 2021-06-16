@@ -22,8 +22,8 @@ const RegisterView = () => {
             console.log(data);
             window.open('/', '_self'); // the second argument '_self' is necessary so that the page will open in the current tab
         })
-        .catch(e => {
-            console.log('error registering the user')
+        .catch(err => {
+            console.log(err + ' error registering the user')
         });
 
 
