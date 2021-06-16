@@ -13,10 +13,14 @@
 <h2>Tech Stack</h2>
 
 <p>Project created with:</p>
-<ol>
+<ul>
 <li>React</li>
 <li>Parcel</li>
 <li>REDUX</li>
 <li>SCSS</li>
-</ol>
+<li>MongoDB</li>
+</ul>
+
+<h3>API:</h3>
+<a href="https://github.com/edisonabdiel/Moobee-server">Moobee-server</a>
 
