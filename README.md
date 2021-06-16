@@ -16,6 +16,7 @@
 <ul>
 <li>React</li>
 <li>Parcel</li>
+<li>React-Bootstrap</li>
 <li>REDUX</li>
 <li>SCSS</li>
 <li>MongoDB</li>
