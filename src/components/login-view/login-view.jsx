@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import Form from 'react-bootstrap/Form';
-import { Row } from 'react-bootstrap'
-import Button from 'react-bootstrap/Button';
+import { Row, Form, Button } from 'react-bootstrap'
 import axios from 'axios';
 
 import './login-view.scss';

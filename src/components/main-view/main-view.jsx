@@ -37,7 +37,7 @@ import beeLogo from '../../assets/bee.png';
 const MainView = ({ user, movies, setUser, setMovies }) => {
 
     // Authenticates user and saves token in local storage
-    const onLoggedin = (authData) => {
+    const onLoggedIn = (authData) => {
         console.log(authData)
         setUser({
             data: authData.user,
@@ -99,7 +99,7 @@ const MainView = ({ user, movies, setUser, setMovies }) => {
 
       if (!user) return (
             <Col>
-                <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
+              <LoginView onLoggedIn={user => { onLoggedIn(user) }} />
             </Col>
         )
 

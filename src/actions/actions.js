@@ -16,11 +16,12 @@ export const setMovies = (value) => {
   };
 }
 
-export const setUser = (value) => {
+export const setUser = (user, meta) => {
   console.log('SET_USER action triggered');
   return {
     type: SET_USER,
-    value
+    payload: user,
+    meta: meta
   };
 }
 
