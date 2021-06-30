@@ -13,11 +13,11 @@ class MovieCard extends React.Component {
 
     return (
       <Card className="card">
-        <Card.Img className="card-img" variant="top" src={movieData.imgUrl} />
+        <Card.Img className="card-img" variant="top" src={movieData.ImgUrl} />
         <Card.Body className="card-body">
-          <Card.Title>{movieData.title}</Card.Title>
-          <Card.Text>{movieData.description}</Card.Text>
-          <Link to={`/movies/${movieData.title}`}>
+          <Card.Title>{movieData.Title}</Card.Title>
+          <Card.Text>{movieData.Description}</Card.Text>
+          <Link to={`/movies/${movieData.Title}`}>
             <Button variant="dark">Open</Button>
           </Link>
         </Card.Body>

@@ -34,7 +34,7 @@ import './main-view.scss';
 import beeLogo from '../../assets/bee.png';
 
 //OOP component
-const MainView = ({ user, movies, setUser, setMovies }) => {
+const MainView = ({ user, movies }) => {
 
     // Authenticates user and saves token in local storage
     const onLoggedIn = (authData) => {
@@ -67,7 +67,7 @@ const MainView = ({ user, movies, setUser, setMovies }) => {
           setUser({
             data: user.data,
             token: token
-          }, 'refresh');
+          }, 'update');
         })
         .catch( err => {
           console.log(err);

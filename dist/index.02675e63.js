@@ -26338,12 +26338,12 @@ try {
   require('../../assets/bee.png');
   var _jsxFileName = "/Users/edisonmasis/CareerFoundryTasks/Achievement_4/movie_client/src/components/main-view/main-view.jsx", _s = $RefreshSig$();
   // OOP component
-  const MainView = ({user, movies, setUser, setMovies}) => {
+  const MainView = ({user, movies}) => {
     _s();
     // Authenticates user and saves token in local storage
     const onLoggedIn = authData => {
       console.log(authData);
-      setUser({
+      _actionsActions.setUser({
         data: authData.user,
         token: authData.token
       }, 'login');
@@ -26366,10 +26366,10 @@ try {
           Authorization: `Bearer ${token}`
         }
       }).then(user => {
-        setUser({
+        _actionsActions.setUser({
           data: user.data,
           token: token
-        }, 'refresh');
+        }, 'update');
       }).catch(err => {
         console.log(err);
       });
@@ -26382,7 +26382,7 @@ try {
         }
       }).then(response => {
         console.log(response.data);
-        setMovies(response.data);
+        _actionsActions.setMovies(response.data);
       }).catch(error => {
         console.log(error);
       });
@@ -26390,7 +26390,7 @@ try {
     const onLoggedOut = () => {
       localStorage.removeItem('token');
       localStorage.removeItem('user');
-      setUser({
+      _actionsActions.setUser({
         user: null
       });
     };
@@ -28816,7 +28816,7 @@ try {
         }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardDefault.default.Img, {
           className: "card-img",
           variant: "top",
-          src: movieData.imgUrl,
+          src: movieData.ImgUrl,
           __self: this,
           __source: {
             fileName: _jsxFileName,
@@ -28838,15 +28838,15 @@ try {
             lineNumber: 18,
             columnNumber: 11
           }
-        }, movieData.title), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardDefault.default.Text, {
+        }, movieData.Title), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapCardDefault.default.Text, {
           __self: this,
           __source: {
             fileName: _jsxFileName,
             lineNumber: 19,
             columnNumber: 11
           }
-        }, movieData.description), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
-          to: `/movies/${movieData.title}`,
+        }, movieData.Description), /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.Link, {
+          to: `/movies/${movieData.Title}`,
           __self: this,
           __source: {
             fileName: _jsxFileName,
@@ -48368,14 +48368,14 @@ const deleteUser = index => {
 const setFavourite = value => {
   console.log('SET_FAVOURITE action triggered');
   return {
-    type: 'SET_FAVOURITE',
+    type: SET_FAVOURITE,
     value
   };
 };
 const updateFavorite = value => {
   console.log('UPDATE_FAVOURITE actions triggered');
   return {
-    type: 'UPDATE_FAVOURITE',
+    type: UPDATE_FAVOURITE,
     value
   };
 };
@@ -49190,7 +49190,7 @@ const movies = (state = initialState.movies, action) => {
 const user = (state = initialState.user, action) => {
   switch (action.type) {
     case _actionsActions.SET_USER:
-      return action.meta === 'login' || action.meta === 'refresh' || action.meta === 'delete' ? action.payload : {
+      return action.meta === 'login' || action.meta === 'update' || action.meta === 'delete' ? action.payload : {
         ...state,
         data: action.payload
       };

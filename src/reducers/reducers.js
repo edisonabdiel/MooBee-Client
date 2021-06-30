@@ -18,7 +18,7 @@ const movies = (state = initialState.movies, action) => {
 const user = (state = initialState.user, action) => {
     switch (action.type) {
         case SET_USER:
-            return action.meta === 'login' || action.meta === 'refresh' || action.meta === 'delete'
+            return action.meta === 'login' || action.meta === 'update' || action.meta === 'delete'
         ? action.payload
         : {
             ...state,

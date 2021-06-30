@@ -52,7 +52,7 @@ export const deleteUser = (index) => {
 export const setFavourite = (value) => {
   console.log('SET_FAVOURITE action triggered');
   return {
-    type: 'SET_FAVOURITE',
+    type: SET_FAVOURITE,
     value
   }
 }
@@ -60,7 +60,7 @@ export const setFavourite = (value) => {
 export const updateFavorite = (value) => {
   console.log('UPDATE_FAVOURITE actions triggered');
   return {
-    type: 'UPDATE_FAVOURITE',
+    type: UPDATE_FAVOURITE,
     value
   }
 }
