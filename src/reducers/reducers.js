@@ -15,6 +15,8 @@ import state from '../state/state';
 const initialState = state;
 
 const movies = (state = initialState.movies, action) => {
+    console.log('movies reducer: '+action.value)
+
     switch (action.type) {
         case SET_MOVIES:
             return action.value;
@@ -24,6 +26,8 @@ const movies = (state = initialState.movies, action) => {
 }
 
 const user = (state = initialState.user, action) => {
+    console.log(`user reducer: type->${action.type} payload->${action.payload}`)
+
     switch (action.type) {
         case SET_USER:
             return action.meta === 'login' || action.meta === 'update' || action.meta === 'delete'
