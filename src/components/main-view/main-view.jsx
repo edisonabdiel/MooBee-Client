@@ -38,7 +38,6 @@ const MainView = ({ user, movies }) => {
 
     // Authenticates user and saves token in local storage
     const onLoggedIn = (authData) => {
-        console.log(authData)
         setUser({
             data: authData.user,
             token: authData.token
@@ -52,7 +51,8 @@ const MainView = ({ user, movies }) => {
 
     useEffect(() => {
         let token = localStorage.getItem('token');
-        let user = localStorage.getItem('user');
+        var user = localStorage.getItem('user');
+        // console.log(user)
         if (token !== null) {
             getUser(token, (user));
             getMovies(token);
@@ -96,7 +96,7 @@ const MainView = ({ user, movies }) => {
         });
     }
 
-
+    console.log(user)
       if (!user) return (
             <Col>
               <LoginView onLoggedIn={user => { onLoggedIn(user) }} />
