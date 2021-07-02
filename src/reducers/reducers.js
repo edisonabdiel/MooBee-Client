@@ -1,6 +1,14 @@
 import { combineReducers } from 'redux';
 
-import { SET_MOVIES, SET_USER, SET_FILTER, UPDATE_USER, DELETE_USER, SET_FAVOURITE, UPDATE_FAVOURITE } from '../actions/actions';
+import { 
+    SET_MOVIES, 
+    SET_USER, 
+    SET_FILTER, 
+    UPDATE_USER, 
+    DELETE_USER, 
+    SET_FAVOURITE,
+     UPDATE_FAVOURITE 
+    } from '../actions/actions';
 
 import state from '../state/state';
 
