@@ -1,11 +1,11 @@
 // ACTIONS TYPES:
 export const SET_MOVIES = 'SET_MOVIES';
 export const SET_USER = 'SET_USER';
-export const SET_FILTER = 'SET_FILTER';
-export const UPDATE_USER = 'UPDATE_USER';
-export const DELETE_USER = 'DELETE_USER';
-export const SET_FAVOURITE = 'SET_FAVOURITE';
-export const UPDATE_FAVOURITE = 'UPDATE_FAVOURITE';
+// export const SET_FILTER = 'SET_FILTER';
+// export const UPDATE_USER = 'UPDATE_USER';
+// export const DELETE_USER = 'DELETE_USER';
+// export const SET_FAVOURITE = 'SET_FAVOURITE';
+// export const UPDATE_FAVOURITE = 'UPDATE_FAVOURITE';
 
 // ACTIONS:
 export const setMovies = (value) => {

@@ -26394,26 +26394,11 @@ try {
         user: null
       });
     };
-    if (!user) return (
-      /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapColDefault.default, {
-        __self: undefined,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 101,
-          columnNumber: 13
-        }
-      }, /*#__PURE__*/_reactDefault.default.createElement(_loginViewLoginViewDefault.default, {
-        onLoggedIn: user => {
-          onLoggedIn(user);
-        },
-        __self: undefined,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 102,
-          columnNumber: 15
-        }
-      }))
-    );
+    // if (!user) return (
+    // <Col>
+    // <LoginView onLoggedIn={user => { onLoggedIn(user) }} />
+    // </Col>
+    // )
     return (
       /*#__PURE__*/_reactDefault.default.createElement(_reactDefault.default.Fragment, null, /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.BrowserRouter, {
         __self: undefined,
@@ -26838,7 +26823,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","@parcel/transformer-js/lib/esmodule-helpers.js":"3tkE2","../../../../../../../../usr/local/lib/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"2ZdUV","axios":"7rA65","../movie-card/movie-card":"7v6h3","../movie-view/movie-view":"3xBbr","../login-view/login-view":"6M7fu","react-bootstrap/Row":"3fzwD","react-bootstrap/Col":"2D0r8","react-bootstrap/Navbar":"3qLFd","react-bootstrap/Nav":"3T3v1","react-bootstrap/Form":"6A5ko","react-bootstrap/Button":"1ru0l","./main-view.scss":"3X8QW","../../assets/bee.png":"7kBvw","react-router-dom":"1PMSK","../genre-view/genre-view":"6FLqj","../director-view/director-view":"7HF27","react-redux":"7GDa4","../../actions/actions":"5S6cN","../movie-list/movie-list":"54YBA"}],"3tkE2":[function(require,module,exports) {
+},{"react":"3b2NM","@parcel/transformer-js/lib/esmodule-helpers.js":"3tkE2","../../../../../../../../usr/local/lib/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"2ZdUV","axios":"7rA65","../movie-card/movie-card":"7v6h3","../movie-view/movie-view":"3xBbr","../login-view/login-view":"6M7fu","react-bootstrap/Row":"3fzwD","react-bootstrap/Col":"2D0r8","react-bootstrap/Navbar":"3qLFd","react-bootstrap/Nav":"3T3v1","react-bootstrap/Form":"6A5ko","react-bootstrap/Button":"1ru0l","./main-view.scss":"3X8QW","react-router-dom":"1PMSK","react-redux":"7GDa4","../movie-list/movie-list":"54YBA","../genre-view/genre-view":"6FLqj","../director-view/director-view":"7HF27","../../actions/actions":"5S6cN","../../assets/bee.png":"7kBvw"}],"3tkE2":[function(require,module,exports) {
 "use strict";
 
 exports.interopDefault = function (a) {
@@ -46677,206 +46662,7 @@ Tooltip.displayName = 'Tooltip';
 var _default = Tooltip;
 exports.default = _default;
 module.exports = exports["default"];
-},{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","@babel/runtime/helpers/extends":"3krLJ","@babel/runtime/helpers/objectWithoutPropertiesLoose":"3Yx9V","classnames":"5aJRc","react":"3b2NM","prop-types-extra/lib/isRequiredForA11y":"4XrEc","./ThemeProvider":"4rz1S"}],"7kBvw":[function() {},{}],"3X8QW":[function() {},{}],"7kBvw":[function() {},{}],"6FLqj":[function(require,module,exports) {
-var helpers = require("../../../../../../../../usr/local/lib/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-helpers.prelude(module);
-try {
-  var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
-  _parcelHelpers.defineInteropFlag(exports);
-  var _react = require('react');
-  var _reactDefault = _parcelHelpers.interopDefault(_react);
-  var _propTypes = require('prop-types');
-  var _propTypesDefault = _parcelHelpers.interopDefault(_propTypes);
-  var _reactBootstrap = require('react-bootstrap');
-  var _movieCardMovieCard = require('../movie-card/movie-card');
-  var _movieCardMovieCardDefault = _parcelHelpers.interopDefault(_movieCardMovieCard);
-  var _jsxFileName = "/Users/edisonmasis/CareerFoundryTasks/Achievement_4/movie_client/src/components/genre-view/genre-view.jsx";
-  const GenreView = ({movies, history, onBackClick}) => {
-    return (
-      /*#__PURE__*/_reactDefault.default.createElement(_reactDefault.default.Fragment, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
-        variant: "light",
-        onClick: onBackClick,
-        __self: undefined,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 11,
-          columnNumber: 7
-        }
-      }, " Back "), /*#__PURE__*/_reactDefault.default.createElement("div", {
-        __self: undefined,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 12,
-          columnNumber: 7
-        }
-      }, /*#__PURE__*/_reactDefault.default.createElement("pre", {
-        __self: undefined,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 13,
-          columnNumber: 9
-        }
-      }, movies[0].genre.name), /*#__PURE__*/_reactDefault.default.createElement("pre", {
-        __self: undefined,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 14,
-          columnNumber: 9
-        }
-      }, movies[0].genre.description)), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Container, {
-        __self: undefined,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 16,
-          columnNumber: 7
-        }
-      }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Row, {
-        __self: undefined,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 17,
-          columnNumber: 9
-        }
-      }, movies.map((movie, i) => /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Col, {
-        xs: 4,
-        lg: 3,
-        key: i,
-        className: "p-2",
-        __self: undefined,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 20,
-          columnNumber: 15
-        }
-      }, /*#__PURE__*/_reactDefault.default.createElement(_movieCardMovieCardDefault.default, {
-        key: m._id,
-        movie: movie,
-        __self: undefined,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 21,
-          columnNumber: 17
-        }
-      }))))))
-    );
-  };
-  _c = GenreView;
-  GenreView.propType = {
-    movies: _propTypesDefault.default.object.isRequired,
-    onBackClick: _propTypesDefault.default.func.isRequired
-  };
-  exports.default = GenreView;
-  var _c;
-  $RefreshReg$(_c, "GenreView");
-  helpers.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-
-},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","../movie-card/movie-card":"7v6h3","@parcel/transformer-js/lib/esmodule-helpers.js":"3tkE2","../../../../../../../../usr/local/lib/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"2ZdUV"}],"7HF27":[function(require,module,exports) {
-var helpers = require("../../../../../../../../usr/local/lib/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-helpers.prelude(module);
-try {
-  var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
-  _parcelHelpers.defineInteropFlag(exports);
-  var _react = require('react');
-  var _reactDefault = _parcelHelpers.interopDefault(_react);
-  var _propTypes = require('prop-types');
-  var _propTypesDefault = _parcelHelpers.interopDefault(_propTypes);
-  var _reactBootstrap = require('react-bootstrap');
-  var _jsxFileName = "/Users/edisonmasis/CareerFoundryTasks/Achievement_4/movie_client/src/components/director-view/director-view.jsx";
-  const DirectorView = ({movies, director, onBackClick}) => {
-    const moviesByDirector = movies.filter(movie => movie.director === directors.name);
-    console.log(director);
-    return (
-      /*#__PURE__*/_reactDefault.default.createElement(_reactDefault.default.Fragment, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Row, {
-        __self: undefined,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 14,
-          columnNumber: 7
-        }
-      }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Col, {
-        __self: undefined,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 15,
-          columnNumber: 9
-        }
-      }, /*#__PURE__*/_reactDefault.default.createElement("h2", {
-        __self: undefined,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 16,
-          columnNumber: 11
-        }
-      }, director.name), /*#__PURE__*/_reactDefault.default.createElement("h3", {
-        __self: undefined,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 17,
-          columnNumber: 11
-        }
-      }, director.bio), /*#__PURE__*/_reactDefault.default.createElement("h3", {
-        __self: undefined,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 18,
-          columnNumber: 11
-        }
-      }, director.born), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
-        onClick: onBackClick,
-        __self: undefined,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 19,
-          columnNumber: 11
-        }
-      }, "Back")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Col, {
-        __self: undefined,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 21,
-          columnNumber: 9
-        }
-      }, /*#__PURE__*/_reactDefault.default.createElement("div", {
-        __self: undefined,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 22,
-          columnNumber: 11
-        }
-      }, moviesByDirector.map((m, i) => /*#__PURE__*/_reactDefault.default.createElement("h3", {
-        key: i,
-        __self: undefined,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 23,
-          columnNumber: 45
-        }
-      }, m.title))))))
-    );
-  };
-  _c = DirectorView;
-  DirectorView.prototypes = {
-    director: _propTypesDefault.default.object,
-    onBackClick: _propTypesDefault.default.func
-  };
-  exports.default = DirectorView;
-  var _c;
-  $RefreshReg$(_c, "DirectorView");
-  helpers.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-
-},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","@parcel/transformer-js/lib/esmodule-helpers.js":"3tkE2","../../../../../../../../usr/local/lib/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"2ZdUV"}],"7GDa4":[function(require,module,exports) {
+},{"@babel/runtime/helpers/interopRequireDefault":"4ttVj","@babel/runtime/helpers/extends":"3krLJ","@babel/runtime/helpers/objectWithoutPropertiesLoose":"3Yx9V","classnames":"5aJRc","react":"3b2NM","prop-types-extra/lib/isRequiredForA11y":"4XrEc","./ThemeProvider":"4rz1S"}],"7kBvw":[function() {},{}],"3X8QW":[function() {},{}],"7GDa4":[function(require,module,exports) {
 "use strict";
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
@@ -48277,110 +48063,7 @@ exports.unstable_batchedUpdates = void 0;
 var _reactDom = require("react-dom");
 
 exports.unstable_batchedUpdates = _reactDom.unstable_batchedUpdates;
-},{"react-dom":"2sg1U"}],"5S6cN":[function(require,module,exports) {
-var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
-_parcelHelpers.defineInteropFlag(exports);
-_parcelHelpers.export(exports, "SET_MOVIES", function () {
-  return SET_MOVIES;
-});
-_parcelHelpers.export(exports, "SET_USER", function () {
-  return SET_USER;
-});
-_parcelHelpers.export(exports, "SET_FILTER", function () {
-  return SET_FILTER;
-});
-_parcelHelpers.export(exports, "UPDATE_USER", function () {
-  return UPDATE_USER;
-});
-_parcelHelpers.export(exports, "DELETE_USER", function () {
-  return DELETE_USER;
-});
-_parcelHelpers.export(exports, "SET_FAVOURITE", function () {
-  return SET_FAVOURITE;
-});
-_parcelHelpers.export(exports, "UPDATE_FAVOURITE", function () {
-  return UPDATE_FAVOURITE;
-});
-_parcelHelpers.export(exports, "setMovies", function () {
-  return setMovies;
-});
-_parcelHelpers.export(exports, "setUser", function () {
-  return setUser;
-});
-_parcelHelpers.export(exports, "setFilter", function () {
-  return setFilter;
-});
-_parcelHelpers.export(exports, "updateUser", function () {
-  return updateUser;
-});
-_parcelHelpers.export(exports, "deleteUser", function () {
-  return deleteUser;
-});
-_parcelHelpers.export(exports, "setFavourite", function () {
-  return setFavourite;
-});
-_parcelHelpers.export(exports, "updateFavorite", function () {
-  return updateFavorite;
-});
-const SET_MOVIES = 'SET_MOVIES';
-const SET_USER = 'SET_USER';
-const SET_FILTER = 'SET_FILTER';
-const UPDATE_USER = 'UPDATE_USER';
-const DELETE_USER = 'DELETE_USER';
-const SET_FAVOURITE = 'SET_FAVOURITE';
-const UPDATE_FAVOURITE = 'UPDATE_FAVOURITE';
-const setMovies = value => {
-  console.log('SET_MOVIES action triggered');
-  return {
-    type: SET_MOVIES,
-    value
-  };
-};
-const setUser = (user, meta) => {
-  console.log('SET_USER action triggered');
-  return {
-    type: SET_USER,
-    payload: user,
-    meta: meta
-  };
-};
-const setFilter = value => {
-  console.log('SET_FILTER actions triggered');
-  return {
-    type: SET_FILTER,
-    value
-  };
-};
-const updateUser = value => {
-  console.log('UPDATE_USER action triggered');
-  return {
-    type: UPDATE_USER,
-    value
-  };
-};
-const deleteUser = index => {
-  console.log('DELETE_USER action triggered');
-  return {
-    type: DELETE_USER,
-    index
-  };
-};
-const setFavourite = value => {
-  console.log('SET_FAVOURITE action triggered');
-  return {
-    type: SET_FAVOURITE,
-    value
-  };
-};
-const updateFavorite = value => {
-  console.log('UPDATE_FAVOURITE actions triggered');
-  return {
-    type: UPDATE_FAVOURITE,
-    value
-  };
-};
-
-},{"@parcel/transformer-js/lib/esmodule-helpers.js":"3tkE2"}],"54YBA":[function(require,module,exports) {
+},{"react-dom":"2sg1U"}],"54YBA":[function(require,module,exports) {
 var helpers = require("../../../../../../../../usr/local/lib/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -48407,7 +48090,7 @@ try {
     const {movies, visibilityFilter} = props;
     let filteredMovies = movies;
     if (visibilityFilter !== '') {
-      filteredMovies = movies.filter(m => m.title.toLowerCase().includes(visibilityFilter.toLowerCase()));
+      filteredMovies = movies.filter(m => m.Title.toLowerCase().includes(visibilityFilter.toLowerCase()));
     }
     if (!movies) return (
       /*#__PURE__*/_reactDefault.default.createElement("div", {
@@ -48474,7 +48157,7 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","../../../../../../../../usr/local/lib/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"2ZdUV","react-redux":"7GDa4","../movie-card/movie-card":"7v6h3","react-bootstrap":"4n7hB","@parcel/transformer-js/lib/esmodule-helpers.js":"3tkE2","../visibility-filter/visibility-filter":"yl3Et"}],"yl3Et":[function(require,module,exports) {
+},{"react":"3b2NM","react-redux":"7GDa4","../visibility-filter/visibility-filter":"yl3Et","../movie-card/movie-card":"7v6h3","react-bootstrap":"4n7hB","@parcel/transformer-js/lib/esmodule-helpers.js":"3tkE2","../../../../../../../../usr/local/lib/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"2ZdUV"}],"yl3Et":[function(require,module,exports) {
 var helpers = require("../../../../../../../../usr/local/lib/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -48513,7 +48196,289 @@ try {
   window.$RefreshSig$ = prevRefreshSig;
 }
 
-},{"react":"3b2NM","react-redux":"7GDa4","react-bootstrap":"4n7hB","../../actions/actions":"5S6cN","@parcel/transformer-js/lib/esmodule-helpers.js":"3tkE2","../../../../../../../../usr/local/lib/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"2ZdUV"}],"5iJih":[function() {},{}],"7panR":[function(require,module,exports) {
+},{"react":"3b2NM","react-redux":"7GDa4","react-bootstrap":"4n7hB","../../actions/actions":"5S6cN","@parcel/transformer-js/lib/esmodule-helpers.js":"3tkE2","../../../../../../../../usr/local/lib/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"2ZdUV"}],"5S6cN":[function(require,module,exports) {
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+_parcelHelpers.defineInteropFlag(exports);
+_parcelHelpers.export(exports, "SET_MOVIES", function () {
+  return SET_MOVIES;
+});
+_parcelHelpers.export(exports, "SET_USER", function () {
+  return SET_USER;
+});
+_parcelHelpers.export(exports, "setMovies", function () {
+  return setMovies;
+});
+_parcelHelpers.export(exports, "setUser", function () {
+  return setUser;
+});
+_parcelHelpers.export(exports, "setFilter", function () {
+  return setFilter;
+});
+_parcelHelpers.export(exports, "updateUser", function () {
+  return updateUser;
+});
+_parcelHelpers.export(exports, "deleteUser", function () {
+  return deleteUser;
+});
+_parcelHelpers.export(exports, "setFavourite", function () {
+  return setFavourite;
+});
+_parcelHelpers.export(exports, "updateFavorite", function () {
+  return updateFavorite;
+});
+const SET_MOVIES = 'SET_MOVIES';
+const SET_USER = 'SET_USER';
+const setMovies = value => {
+  console.log('SET_MOVIES action triggered');
+  return {
+    type: SET_MOVIES,
+    value
+  };
+};
+const setUser = (user, meta) => {
+  console.log('SET_USER action triggered');
+  return {
+    type: SET_USER,
+    payload: user,
+    meta: meta
+  };
+};
+const setFilter = value => {
+  console.log('SET_FILTER actions triggered');
+  return {
+    type: SET_FILTER,
+    value
+  };
+};
+const updateUser = value => {
+  console.log('UPDATE_USER action triggered');
+  return {
+    type: UPDATE_USER,
+    value
+  };
+};
+const deleteUser = index => {
+  console.log('DELETE_USER action triggered');
+  return {
+    type: DELETE_USER,
+    index
+  };
+};
+const setFavourite = value => {
+  console.log('SET_FAVOURITE action triggered');
+  return {
+    type: SET_FAVOURITE,
+    value
+  };
+};
+const updateFavorite = value => {
+  console.log('UPDATE_FAVOURITE actions triggered');
+  return {
+    type: UPDATE_FAVOURITE,
+    value
+  };
+};
+
+},{"@parcel/transformer-js/lib/esmodule-helpers.js":"3tkE2"}],"6FLqj":[function(require,module,exports) {
+var helpers = require("../../../../../../../../usr/local/lib/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+try {
+  var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+  _parcelHelpers.defineInteropFlag(exports);
+  var _react = require('react');
+  var _reactDefault = _parcelHelpers.interopDefault(_react);
+  var _propTypes = require('prop-types');
+  var _propTypesDefault = _parcelHelpers.interopDefault(_propTypes);
+  var _reactBootstrap = require('react-bootstrap');
+  var _movieCardMovieCard = require('../movie-card/movie-card');
+  var _movieCardMovieCardDefault = _parcelHelpers.interopDefault(_movieCardMovieCard);
+  var _jsxFileName = "/Users/edisonmasis/CareerFoundryTasks/Achievement_4/movie_client/src/components/genre-view/genre-view.jsx";
+  const GenreView = ({movies, history, onBackClick}) => {
+    return (
+      /*#__PURE__*/_reactDefault.default.createElement(_reactDefault.default.Fragment, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
+        variant: "light",
+        onClick: onBackClick,
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 11,
+          columnNumber: 7
+        }
+      }, " Back "), /*#__PURE__*/_reactDefault.default.createElement("div", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 12,
+          columnNumber: 7
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("pre", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 13,
+          columnNumber: 9
+        }
+      }, movies[0].genre.name), /*#__PURE__*/_reactDefault.default.createElement("pre", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 14,
+          columnNumber: 9
+        }
+      }, movies[0].genre.description)), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Container, {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 16,
+          columnNumber: 7
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Row, {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 17,
+          columnNumber: 9
+        }
+      }, movies.map((movie, i) => /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Col, {
+        xs: 4,
+        lg: 3,
+        key: i,
+        className: "p-2",
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 20,
+          columnNumber: 15
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement(_movieCardMovieCardDefault.default, {
+        key: m._id,
+        movie: movie,
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 21,
+          columnNumber: 17
+        }
+      }))))))
+    );
+  };
+  _c = GenreView;
+  GenreView.propType = {
+    movies: _propTypesDefault.default.object.isRequired,
+    onBackClick: _propTypesDefault.default.func.isRequired
+  };
+  exports.default = GenreView;
+  var _c;
+  $RefreshReg$(_c, "GenreView");
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+
+},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","../movie-card/movie-card":"7v6h3","@parcel/transformer-js/lib/esmodule-helpers.js":"3tkE2","../../../../../../../../usr/local/lib/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"2ZdUV"}],"7HF27":[function(require,module,exports) {
+var helpers = require("../../../../../../../../usr/local/lib/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+helpers.prelude(module);
+try {
+  var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+  _parcelHelpers.defineInteropFlag(exports);
+  var _react = require('react');
+  var _reactDefault = _parcelHelpers.interopDefault(_react);
+  var _propTypes = require('prop-types');
+  var _propTypesDefault = _parcelHelpers.interopDefault(_propTypes);
+  var _reactBootstrap = require('react-bootstrap');
+  var _jsxFileName = "/Users/edisonmasis/CareerFoundryTasks/Achievement_4/movie_client/src/components/director-view/director-view.jsx";
+  const DirectorView = ({movies, director, onBackClick}) => {
+    const moviesByDirector = movies.filter(movie => movie.director === directors.name);
+    console.log(director);
+    return (
+      /*#__PURE__*/_reactDefault.default.createElement(_reactDefault.default.Fragment, null, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Row, {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 14,
+          columnNumber: 7
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Col, {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 15,
+          columnNumber: 9
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("h2", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 16,
+          columnNumber: 11
+        }
+      }, director.name), /*#__PURE__*/_reactDefault.default.createElement("h3", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 17,
+          columnNumber: 11
+        }
+      }, director.bio), /*#__PURE__*/_reactDefault.default.createElement("h3", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 18,
+          columnNumber: 11
+        }
+      }, director.born), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Button, {
+        onClick: onBackClick,
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 19,
+          columnNumber: 11
+        }
+      }, "Back")), /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrap.Col, {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 21,
+          columnNumber: 9
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement("div", {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 22,
+          columnNumber: 11
+        }
+      }, moviesByDirector.map((m, i) => /*#__PURE__*/_reactDefault.default.createElement("h3", {
+        key: i,
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 23,
+          columnNumber: 45
+        }
+      }, m.title))))))
+    );
+  };
+  _c = DirectorView;
+  DirectorView.prototypes = {
+    director: _propTypesDefault.default.object,
+    onBackClick: _propTypesDefault.default.func
+  };
+  exports.default = DirectorView;
+  var _c;
+  $RefreshReg$(_c, "DirectorView");
+  helpers.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+
+},{"react":"3b2NM","prop-types":"4dfy5","react-bootstrap":"4n7hB","@parcel/transformer-js/lib/esmodule-helpers.js":"3tkE2","../../../../../../../../usr/local/lib/node_modules/parcel/node_modules/@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"2ZdUV"}],"7kBvw":[function() {},{}],"5iJih":[function() {},{}],"7panR":[function(require,module,exports) {
 "use strict";
 Object.defineProperty(exports, '__esModule', {
   value: true
@@ -49194,37 +49159,31 @@ const user = (state = initialState.user, action) => {
         ...state,
         data: action.payload
       };
-    case _actionsActions.UPDATE_USER:
-      return action.payload;
-    case _actionsActions.DELETE_USER:
-      return action.payload;
     default:
       return state;
   }
 };
-const favourite = (state = initialState.favourites, action) => {
-  switch (action.type) {
-    case _actionsActions.SET_FAVOURITE:
-      return action.value;
-    case _actionsActions.UPDATE_FAVOURITE:
-      return action.value;
-    default:
-      return state;
-  }
-};
-const visibilityFilter = (state = initialState.movieFilter, action) => {
-  switch (action.type) {
-    case _actionsActions.SET_FILTER:
-      return action.value;
-    default:
-      return state;
-  }
-};
+// const favourite = (state = initialState.favourites, action) => {
+// switch (action.type) {
+// case SET_FAVOURITE:
+// return action.value;
+// case UPDATE_FAVOURITE:
+// return action.value;
+// default:
+// return state;
+// }
+// }
+// const visibilityFilter = (state = initialState.movieFilter, action) => {
+// switch (action.type) {
+// case SET_FILTER:
+// return action.value;
+// default:
+// return state;
+// }
+// }
 const appReducers = _redux.combineReducers({
   movies,
-  user,
-  favourite,
-  visibilityFilter
+  user
 });
 exports.default = appReducers;
 

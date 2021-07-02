@@ -24,40 +24,40 @@ const user = (state = initialState.user, action) => {
             ...state,
             data: action.payload
           }
-        case UPDATE_USER:
-            return action.payload;
-        case DELETE_USER:
-            return action.payload;
+        // case UPDATE_USER:
+        //     return action.payload;
+        // case DELETE_USER:
+        //     return action.payload;
         default:
             return state;
     }
 }
 
-const favourite = (state = initialState.favourites, action) => {
-    switch (action.type) {
-        case SET_FAVOURITE:
-            return action.value;
-        case UPDATE_FAVOURITE:
-            return action.value;
-        default:
-            return state;
-    }
-}
+// const favourite = (state = initialState.favourites, action) => {
+//     switch (action.type) {
+//         case SET_FAVOURITE:
+//             return action.value;
+//         case UPDATE_FAVOURITE:
+//             return action.value;
+//         default:
+//             return state;
+//     }
+// }
 
-const visibilityFilter = (state = initialState.movieFilter, action) => {
-    switch (action.type) {
-        case SET_FILTER:
-            return action.value;
-        default:
-            return state;
-    }
-}
+// const visibilityFilter = (state = initialState.movieFilter, action) => {
+//     switch (action.type) {
+//         case SET_FILTER:
+//             return action.value;
+//         default:
+//             return state;
+//     }
+// }
 
 const appReducers = combineReducers({
     movies,
-    user,
-    favourite,
-    visibilityFilter
+    user
+    // favourite,
+    // visibilityFilter
 });
 
 export default appReducers;

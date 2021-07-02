@@ -97,11 +97,11 @@ const MainView = ({ user, movies }) => {
     }
 
 
-      if (!user) return (
-            <Col>
-              <LoginView onLoggedIn={user => { onLoggedIn(user) }} />
-            </Col>
-        )
+    //   if (!user) return (
+    //         <Col>
+    //           <LoginView onLoggedIn={user => { onLoggedIn(user) }} />
+    //         </Col>
+    //     )
 
         return (
             <>
