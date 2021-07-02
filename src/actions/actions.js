@@ -9,7 +9,7 @@ export const UPDATE_FAVOURITE = 'UPDATE_FAVOURITE';
 
 // ACTIONS:
 export const setMovies = (value) => {
-  console.log('SET_MOVIES action triggered');
+  console.log('SET_MOVIES action triggered : values :' + value);
   return {
     type: SET_MOVIES,
     value
@@ -17,7 +17,7 @@ export const setMovies = (value) => {
 }
 
 export const setUser = (user, meta) => {
-  console.log('SET_USER action triggered');
+  console.log('SET_USER action triggered : values :' + user);
   return {
     type: SET_USER,
     payload: user,
