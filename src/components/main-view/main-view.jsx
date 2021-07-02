@@ -196,8 +196,9 @@ const MainView = ({ user, movies }) => {
 
 const mapStateToProps = state => {
     return {
-        movies: state.movies
+        movies: state.movies,
+        user: state.user
     }
 }
 
-export default connect(mapStateToProps, { setMovies })(MainView);
+export default connect(mapStateToProps)(MainView);
