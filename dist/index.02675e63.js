@@ -26342,7 +26342,6 @@ try {
     _s();
     // Authenticates user and saves token in local storage
     const onLoggedIn = authData => {
-      console.log(authData);
       _actionsActions.setUser({
         data: authData.user,
         token: authData.token
@@ -26354,7 +26353,8 @@ try {
     };
     _react.useEffect(() => {
       let token = localStorage.getItem('token');
-      let user = localStorage.getItem('user');
+      var user = localStorage.getItem('user');
+      // console.log(user)
       if (token !== null) {
         getUser(token, user);
         getMovies(token);
@@ -26394,11 +26394,27 @@ try {
         user: null
       });
     };
-    // if (!user) return (
-    // <Col>
-    // <LoginView onLoggedIn={user => { onLoggedIn(user) }} />
-    // </Col>
-    // )
+    console.log(user);
+    if (!user) return (
+      /*#__PURE__*/_reactDefault.default.createElement(_reactBootstrapColDefault.default, {
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 101,
+          columnNumber: 13
+        }
+      }, /*#__PURE__*/_reactDefault.default.createElement(_loginViewLoginViewDefault.default, {
+        onLoggedIn: user => {
+          onLoggedIn(user);
+        },
+        __self: undefined,
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 102,
+          columnNumber: 15
+        }
+      }))
+    );
     return (
       /*#__PURE__*/_reactDefault.default.createElement(_reactDefault.default.Fragment, null, /*#__PURE__*/_reactDefault.default.createElement(_reactRouterDom.BrowserRouter, {
         __self: undefined,
@@ -26809,12 +26825,11 @@ try {
   _c = MainView;
   const mapStateToProps = state => {
     return {
-      movies: state.movies
+      movies: state.movies,
+      user: state.user
     };
   };
-  exports.default = _reactRedux.connect(mapStateToProps, {
-    setMovies: _actionsActions.setMovies
-  })(MainView);
+  exports.default = _reactRedux.connect(mapStateToProps)(MainView);
   var _c;
   $RefreshReg$(_c, "MainView");
   helpers.postlude(module);
@@ -33580,7 +33595,6 @@ try {
         password: password
       }).then(res => {
         props.onLoggedIn(res.data);
-        console.log(res.data);
       }).catch(e => {
         console.log(e + ' no such user');
       });
@@ -48205,6 +48219,9 @@ _parcelHelpers.export(exports, "SET_MOVIES", function () {
 _parcelHelpers.export(exports, "SET_USER", function () {
   return SET_USER;
 });
+_parcelHelpers.export(exports, "SET_FILTER", function () {
+  return SET_FILTER;
+});
 _parcelHelpers.export(exports, "setMovies", function () {
   return setMovies;
 });
@@ -48228,15 +48245,16 @@ _parcelHelpers.export(exports, "updateFavorite", function () {
 });
 const SET_MOVIES = 'SET_MOVIES';
 const SET_USER = 'SET_USER';
+const SET_FILTER = 'SET_FILTER';
 const setMovies = value => {
-  console.log('SET_MOVIES action triggered');
+  console.log('SET_MOVIES action triggered : values :' + value);
   return {
     type: SET_MOVIES,
     value
   };
 };
 const setUser = (user, meta) => {
-  console.log('SET_USER action triggered');
+  console.log('SET_USER action triggered : values :' + JSON.stringify(user));
   return {
     type: SET_USER,
     payload: user,
@@ -49144,7 +49162,8 @@ var _actionsActions = require('../actions/actions');
 var _stateState = require('../state/state');
 var _stateStateDefault = _parcelHelpers.interopDefault(_stateState);
 const initialState = _stateStateDefault.default;
-const movies = (state = initialState.movies, action) => {
+const movies = (state = [], action) => {
+  console.log('movies reducer: ' + action.value);
   switch (action.type) {
     case _actionsActions.SET_MOVIES:
       return action.value;
@@ -49152,13 +49171,11 @@ const movies = (state = initialState.movies, action) => {
       return state;
   }
 };
-const user = (state = initialState.user, action) => {
+const user = (state = "", action) => {
+  console.log(`user reducer: type->${action.type} payload->${action.payload}`);
   switch (action.type) {
     case _actionsActions.SET_USER:
-      return action.meta === 'login' || action.meta === 'update' || action.meta === 'delete' ? action.payload : {
-        ...state,
-        data: action.payload
-      };
+      return action.payload;
     default:
       return state;
   }

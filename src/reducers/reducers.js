@@ -1,12 +1,22 @@
 import { combineReducers } from 'redux';
 
-import { SET_MOVIES, SET_USER, SET_FILTER, UPDATE_USER, DELETE_USER, SET_FAVOURITE, UPDATE_FAVOURITE } from '../actions/actions';
+import { 
+    SET_MOVIES, 
+    SET_USER, 
+    SET_FILTER, 
+    UPDATE_USER, 
+    DELETE_USER, 
+    SET_FAVOURITE,
+     UPDATE_FAVOURITE 
+    } from '../actions/actions';
 
 import state from '../state/state';
 
 const initialState = state;
 
-const movies = (state = initialState.movies, action) => {
+const movies = (state = [], action) => {
+    console.log('movies reducer: ' + action.value)
+
     switch (action.type) {
         case SET_MOVIES:
             return action.value;
@@ -15,15 +25,12 @@ const movies = (state = initialState.movies, action) => {
     }
 }
 
-const user = (state = initialState.user, action) => {
+const user = (state = "", action) => {
+    console.log(`user reducer: type->${action.type} payload->${action.payload}`)
+
     switch (action.type) {
         case SET_USER:
-            return action.meta === 'login' || action.meta === 'update' || action.meta === 'delete'
-        ? action.payload
-        : {
-            ...state,
-            data: action.payload
-          }
+            return action.payload;
         // case UPDATE_USER:
         //     return action.payload;
         // case DELETE_USER:

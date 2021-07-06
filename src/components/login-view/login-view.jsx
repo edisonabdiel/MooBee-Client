@@ -22,7 +22,7 @@ const LoginView = (props) => {
         })
             .then(res => {
                 props.onLoggedIn(res.data);
-                console.log(res.data)
+                // console.log(res.data)
             })
             .catch(e => {
                 console.log(e + ' no such user');
