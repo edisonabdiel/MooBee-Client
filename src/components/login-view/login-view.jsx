@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import Form from 'react-bootstrap/Form';
-import { Row } from 'react-bootstrap'
-import Button from 'react-bootstrap/Button';
+import { Row, Form, Button } from 'react-bootstrap'
 import axios from 'axios';
 
 import './login-view.scss';
@@ -22,26 +21,26 @@ const LoginView = (props) => {
             password: password
         })
             .then(res => {
-                const data = res.data;
-                props.onLoggedIn(data);
-                console.log(data)
+                props.onLoggedIn(res.data);
+                // console.log(res.data)
             })
             .catch(e => {
-                console.log('no such user')
-            })
+                console.log(e + ' no such user');
+            });
     }
 
     return (
         <Row className="justify-content-md-center">
             <Form className="form">
-                <h1>Login to MooBee</h1>
-                <Form.Group controlId="username" >
+                <h1>Welcome to MooBee</h1>
+                <p>Please login to continue!</p>
+                <Form.Group controlId="userName" >
                     <Form.Label>Username:</Form.Label>
-                    <Form.Control type="text" placeholder="@username" />
+                    <Form.Control type="text" placeholder="username" onChange={e => setUsername(e.target.value)} />
                 </Form.Group>
                 <Form.Group controlId="password">
                     <Form.Label>Password:</Form.Label>
-                    <Form.Control type="password" placeholder="password" />
+                    <Form.Control type="password" placeholder="password" onChange={e => setPassword(e.target.value)} />
                 </Form.Group>
                 <Button type="submit" variant="info" onClick={handleSubmit}>Login</Button>
             </Form>
@@ -50,12 +49,7 @@ const LoginView = (props) => {
 }
 
 LoginView.propTypes = {
-    user: PropTypes.shape({
-        username: PropTypes.string.isRequired,
-        password: PropTypes.string.isRequired,
-    }),
-    onLoggedIn: PropTypes.func.isRequired,
-    onRegister: PropTypes.func,
+    onLoggedIn: PropTypes.func.isRequired
 };
 
 

@@ -12,6 +12,20 @@ const RegisterView = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    axios.post('https://moobei.herokuapp.com/users', {
+        username: username,
+        password: password,
+        email: email
+    })
+        .then(response => {
+            const data = response.data;
+            console.log(data);
+            window.open('/', '_self'); // the second argument '_self' is necessary so that the page will open in the current tab
+        })
+        .catch(err => {
+            console.log(err + ' error registering the user')
+        });
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -37,7 +51,7 @@ const RegisterView = () => {
                     <Form.Control type="password" />
                 </Form.Group>
 
-                <Button type="submit"  variant="light" onClick={handleSubmit}>Submit</Button>
+                <Button type="submit" variant="light" onClick={handleSubmit}>Submit</Button>
             </Form>
         </Row>
     );
